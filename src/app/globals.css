@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  --content-width: 1241px;
   --emerald-950: #022f26;
   --emerald-900: #073c30;
   --emerald-800: #124c3b;

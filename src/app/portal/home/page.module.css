@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-  padding: 0 max(24px, calc((100% - 1248px) / 2)) 92px;
+  padding: 0 max(24px, calc((100% - var(--content-width)) / 2)) 92px;
   background-color: #073b30;
   background-image: linear-gradient(rgba(0, 38, 30, 0.04), rgba(0, 38, 30, 0.04)),
     url("/home/marble-background.png");
