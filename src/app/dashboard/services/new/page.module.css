@@ -1,0 +1,41 @@
+.serviceForm {
+  display: grid;
+  gap: 17px;
+}
+
+.serviceForm label {
+  display: grid;
+  gap: 7px;
+  color: #174637;
+  font-family: var(--font-display), serif;
+  font-size: 15px;
+}
+
+.serviceForm input,
+.serviceForm textarea {
+  width: 100%;
+  border: 1px solid #dfbd8a;
+  border-radius: 8px;
+  outline: none;
+  background: #fffcf8;
+  color: #555;
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+}
+
+.serviceForm input {
+  height: 50px;
+  padding: 0 18px;
+}
+
+.serviceForm textarea {
+  min-height: 100px;
+  padding: 16px 18px;
+  resize: vertical;
+}
+
+.serviceForm p {
+  margin: -8px 0 0;
+  color: #b53f3f;
+  font-size: 12px;
+}

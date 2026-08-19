@@ -1,0 +1,329 @@
+.page {
+  min-height: calc(100vh - 64px);
+  overflow-x: hidden;
+  padding-bottom: 30px;
+  background-color: #06392f;
+  background-image: url("/shared/marble-floral-background.webp"), url("/shared/marble-background.webp");
+  background-position: top center, top center;
+  background-size: 100% auto, 100% auto;
+  background-repeat: no-repeat, repeat-y;
+}
+
+.hero {
+  width: 100%;
+  min-height: 206px;
+  padding: 8px 44px 10px;
+  color: #f0cb84;
+}
+
+.backLink {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+.backLink span {
+  font-size: 21px;
+}
+
+.hero h1 {
+  margin: 8px 0 6px;
+  font-family: var(--font-display), serif;
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  font-size: 14px;
+}
+
+.about {
+  max-width: 770px;
+  margin-top: 12px;
+}
+
+.about h2 {
+  margin: 0 0 7px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.about p {
+  margin: 0;
+  color: #f4e2c5;
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.detailsShell {
+  width: calc(100% - 48px);
+  max-width: 1392px;
+  min-height: 684px;
+  margin: 0 auto;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 332px;
+  align-items: start;
+  gap: 20px;
+  border: 1px solid rgba(145, 104, 54, 0.24);
+  border-radius: 20px;
+  background: #fbf4e9;
+  box-shadow: 0 8px 28px rgba(0, 24, 18, 0.14);
+}
+
+.mainColumn {
+  min-width: 0;
+}
+
+.heroImage {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 2023 / 508;
+  border-radius: 16px;
+  background: #e2d5c4;
+}
+
+.heroImage img {
+  object-fit: cover;
+}
+
+.organizerCard {
+  margin-top: 18px;
+  padding: 17px;
+  border: 1px solid #e5dac8;
+  border-radius: 16px;
+  background: rgba(255, 250, 243, 0.56);
+}
+
+.organizerCard h2 {
+  margin: 0 0 13px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.organizerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.organizerIdentity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.organizerIdentity > img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.organizerIdentity strong,
+.organizerIdentity span {
+  display: block;
+}
+
+.organizerIdentity strong {
+  font-family: var(--font-display), serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.organizerIdentity span {
+  margin-top: 3px;
+  color: #807b75;
+  font-size: 14px;
+}
+
+.organizerContent address {
+  display: grid;
+  gap: 7px;
+  color: #827e78;
+  font-size: 15px;
+  font-style: normal;
+}
+
+.organizerContent address a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.organizerContent address span {
+  width: 18px;
+  text-align: center;
+}
+
+.sidebar {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.registrationCard,
+.priceCard,
+.formatCard {
+  padding: 18px;
+  border: 1px solid #e5dac8;
+  border-radius: 16px;
+  background: rgba(255, 250, 243, 0.58);
+}
+
+.registrationCard h2,
+.priceCard h2,
+.formatCard h2 {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.registrationCard > p {
+  margin: 7px 0 17px;
+  font-size: 16px;
+}
+
+.registrationCard > button {
+  width: 100%;
+  height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: #0d4839;
+  color: #ead2a5;
+  font-family: var(--font-display), serif;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.registrationCard > div {
+  margin-top: 9px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.registrationCard > div button {
+  height: 48px;
+  border: 1px solid #cfd2d0;
+  border-radius: 999px;
+  background: transparent;
+  color: #315347;
+  font-family: var(--font-display), serif;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.priceCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.priceCard span {
+  color: #817c76;
+  font-size: 21px;
+}
+
+.formatCard p {
+  margin: 5px 0 0;
+  color: #8a857e;
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+@media (max-width: 980px) {
+  .detailsShell {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .sidebar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .registrationCard {
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 680px) {
+  .page {
+    min-height: calc(100vh - 60px);
+    padding-bottom: 14px;
+    background-size: auto 560px, auto 100%;
+  }
+
+  .hero {
+    min-height: 0;
+    padding: 18px 18px 30px;
+  }
+
+  .hero h1 {
+    margin-top: 14px;
+    font-size: 32px;
+  }
+
+  .heroMeta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .about {
+    margin-top: 18px;
+  }
+
+  .about p {
+    font-size: 14px;
+  }
+
+  .detailsShell {
+    width: calc(100% - 16px);
+    padding: 10px;
+    gap: 14px;
+    border-radius: 15px;
+  }
+
+  .heroImage {
+    aspect-ratio: 16 / 7;
+    border-radius: 13px;
+  }
+
+  .organizerContent {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .organizerIdentity > img {
+    width: 62px;
+    height: 62px;
+  }
+
+  .organizerIdentity strong {
+    font-size: 22px;
+  }
+
+  .sidebar {
+    grid-template-columns: 1fr;
+  }
+
+  .registrationCard {
+    grid-row: auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .registrationCard > div {
+    grid-template-columns: 1fr;
+  }
+}

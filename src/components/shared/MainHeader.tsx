@@ -1,16 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import MainNavigation from "./MainNavigation";
 import styles from "./MainHeader.module.css";
-
-const navigation = [
-  { label: "Home", href: "/portal/home" },
-  { label: "Directory", href: "/portal/directory" },
-  { label: "Sanctuary", href: "/portal/sanctuary" },
-  { label: "Zehra AI", href: "/portal/zehra-ai" },
-  { label: "Events", href: "/portal/events" },
-  { label: "Resources", href: "/portal/resources" },
-  { label: "About Us", href: "/portal/home#about" },
-];
 
 export default function MainHeader() {
   return (
@@ -18,7 +9,7 @@ export default function MainHeader() {
       <div className={styles.inner}>
         <Link className={styles.logo} href="/portal/home" aria-label="Nothing But Beauty home">
           <Image
-            src="/home/brand-logo.svg"
+            src="/shared/brand-logo.svg"
             alt="Nothing But Beauty Portal"
             width={292}
             height={63}
@@ -26,17 +17,11 @@ export default function MainHeader() {
           />
         </Link>
 
-        <nav className={styles.desktopNav} aria-label="Primary navigation">
-          {navigation.map((item) => (
-            <Link key={item.label} href={item.href}>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <MainNavigation className={styles.desktopNav} ariaLabel="Primary navigation" />
 
         <div className={styles.actions}>
           <button className={styles.themeButton} type="button" aria-label="Toggle color theme">
-            <Image src="/home/theme-toggle.svg" alt="" width={40} height={40} />
+            <Image src="/shared/theme-toggle.svg" alt="" width={40} height={40} />
           </button>
           <Link className={styles.signIn} href="/auth/login">
             Sign In
@@ -52,15 +37,7 @@ export default function MainHeader() {
             <span />
             <span />
           </summary>
-          <nav aria-label="Mobile navigation">
-            {navigation.map((item) => (
-              <Link key={item.label} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/auth/login">Sign In</Link>
-            <Link href="/portal/join-community">Join Waitlist</Link>
-          </nav>
+          <MainNavigation ariaLabel="Mobile navigation" showAccountLinks />
         </details>
       </div>
     </header>

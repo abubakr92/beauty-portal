@@ -1,7 +1,7 @@
 .footer {
   position: relative;
   z-index: 1;
-  padding: 72px max(24px, calc((100% - var(--content-width)) / 2)) 28px;
+  padding: 72px max(18px, calc((100% - var(--content-width)) / 2)) 28px;
   background: #022f26;
   color: #f2dfbf;
 }

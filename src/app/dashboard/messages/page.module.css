@@ -1,0 +1,300 @@
+.messagesPage {
+  position: relative;
+  display: grid;
+  grid-template-columns: 330px minmax(0, 1fr);
+  gap: 28px;
+  height: calc(100dvh - 64px);
+  min-height: 0;
+  overflow: hidden;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.heading {
+  grid-column: 1;
+  grid-row: 1;
+  z-index: 1;
+}
+
+.messagingLayout {
+  display: contents;
+}
+
+.contactList {
+  display: grid;
+  grid-column: 1;
+  grid-row: 1;
+  align-content: start;
+  margin-top: 112px;
+}
+
+.contactList button {
+  display: grid;
+  min-height: 79px;
+  grid-template-columns: 50px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 20px;
+  border: 0;
+  background: transparent;
+  color: #174236;
+  text-align: left;
+  cursor: pointer;
+}
+
+.contactList .activeContact {
+  background: #fff;
+}
+
+.contactList img {
+  border-radius: 50%;
+}
+
+.contactList span {
+  display: grid;
+  min-width: 0;
+  gap: 5px;
+}
+
+.contactList strong {
+  font-size: 14px;
+}
+
+.contactList small,
+.contactList time {
+  color: #858585;
+  font-size: 12px;
+}
+
+.contactList small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chatPanel {
+  display: grid;
+  min-width: 0;
+  grid-column: 2;
+  grid-row: 1;
+  grid-template-rows: 70px minmax(0, 1fr) auto;
+  overflow: hidden;
+  border: 1px solid #e8dece;
+  border-radius: 14px;
+  background: rgba(250, 243, 233, 0.88);
+}
+
+.chatHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #e8dece;
+  background: #fff;
+}
+
+.chatHeader > div {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chatHeader img {
+  border-radius: 50%;
+}
+
+.chatHeader strong {
+  color: #111;
+  font-size: 20px;
+}
+
+.chatHeader i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #00b82d;
+}
+
+.chatHeader nav {
+  display: flex;
+  gap: 8px;
+}
+
+.chatHeader button {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 0;
+  border-radius: 13px;
+  background: #f7f7f7;
+  cursor: pointer;
+}
+
+.messages {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: clamp(12px, 2dvh, 22px);
+  overflow-y: auto;
+  padding: clamp(20px, 4dvh, 38px) 48px 18px;
+}
+
+.messages > time {
+  align-self: center;
+  margin-bottom: 2px;
+  color: #6e6e6e;
+  font-size: 17px;
+}
+
+.incoming,
+.outgoing {
+  display: flex;
+  width: 78%;
+  align-items: center;
+  gap: 13px;
+}
+
+.incoming img {
+  flex: 0 0 auto;
+  border-radius: 50%;
+}
+
+.incoming p,
+.outgoing p {
+  margin: 0;
+  padding: 12px 15px;
+  border-radius: 14px;
+  background: #fff;
+  color: #6d6d6d;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.outgoing {
+  align-self: flex-end;
+}
+
+.outgoing p {
+  width: 100%;
+}
+
+.emptyChat {
+  margin: auto;
+  color: #858585;
+}
+
+.composer {
+  display: flex;
+  min-height: 60px;
+  margin: 0 20px 18px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px;
+  border-radius: 17px;
+  background: #fff;
+}
+
+.composer button {
+  display: grid;
+  flex: 0 0 auto;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.composer input {
+  min-width: 0;
+  flex: 1;
+  padding: 14px 7px;
+  border: 0;
+  outline: none;
+  color: #555;
+}
+
+@media (max-width: 900px) {
+  .messagesPage {
+    display: block;
+    height: auto;
+    min-height: calc(100dvh - 64px);
+    overflow: visible;
+  }
+
+  .contactList {
+    display: flex;
+    margin: 0 0 14px;
+    overflow-x: auto;
+  }
+
+  .contactList button {
+    min-width: 240px;
+  }
+
+  .chatPanel {
+    height: 680px;
+  }
+}
+
+@media (max-width: 600px) {
+  .chatPanel {
+    height: 620px;
+    grid-template-rows: 70px minmax(0, 1fr) auto;
+  }
+
+  .chatHeader {
+    padding-inline: 12px;
+  }
+
+  .chatHeader strong {
+    font-size: 16px;
+  }
+
+  .chatHeader nav button {
+    display: none;
+  }
+
+  .chatHeader nav button:last-child {
+    display: grid;
+    width: 42px;
+    height: 42px;
+  }
+
+  .messages {
+    gap: 16px;
+    padding: 25px 12px;
+  }
+
+  .messages > time {
+    font-size: 13px;
+  }
+
+  .incoming,
+  .outgoing {
+    width: 94%;
+  }
+
+  .incoming img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .incoming p,
+  .outgoing p {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .composer {
+    min-height: 62px;
+    margin: 0 10px 10px;
+    padding-inline: 12px;
+  }
+
+  .composer button:nth-child(2),
+  .composer button:nth-child(3) {
+    display: none;
+  }
+}

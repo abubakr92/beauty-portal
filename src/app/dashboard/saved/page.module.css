@@ -1,0 +1,131 @@
+.savedPage {
+  min-height: calc(100vh - 64px);
+}
+
+.savedGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.savedGrid > article {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #dfc498;
+  border-radius: 17px;
+  background: #fff;
+}
+
+.cardImage {
+  position: relative;
+  aspect-ratio: 1.56;
+  overflow: hidden;
+}
+
+.cardImage > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cardImage button {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(116, 105, 91, 0.25);
+  color: #ff3038;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.cardBody {
+  position: relative;
+  min-height: 116px;
+  margin-top: -7px;
+  padding: 23px 10px 10px;
+  border-radius: 15px 15px 0 0;
+  background: #fff;
+}
+
+.membership {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  display: inline-flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: #fff1dc;
+  color: #916e40;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.membership[data-tier="emerald"] {
+  background: #e8f1e9;
+  color: #224332;
+}
+
+.cardBody h2 {
+  margin: 0;
+  overflow: hidden;
+  color: #174235;
+  font-family: var(--font-display), serif;
+  font-size: 17px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardBody p {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 3px 0 0;
+  overflow: hidden;
+  color: #747474;
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cardBody b {
+  color: #d4a749;
+}
+
+.cardBody small {
+  color: #999;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  margin-top: 80px;
+  color: #777;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .savedGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .savedGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 430px) {
+  .savedGrid {
+    grid-template-columns: 1fr;
+  }
+}

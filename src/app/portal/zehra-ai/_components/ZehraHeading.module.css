@@ -1,0 +1,31 @@
+.heading {
+  color: #0b3027;
+  text-align: center;
+}
+
+.heading h1 {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: 44px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+
+.heading p {
+  margin: 12px 0 0;
+  color: #3d3c38;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+@media (max-width: 680px) {
+  .heading h1 {
+    font-size: 38px;
+  }
+
+  .heading p {
+    margin-top: 8px;
+    font-size: 17px;
+  }
+}

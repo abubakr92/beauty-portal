@@ -1,0 +1,152 @@
+.composer {
+  width: min(calc(100% - 32px), 1165px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.attachment {
+  width: 60px;
+  height: 60px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e7d6ba;
+  border-radius: 50%;
+  background: rgba(249, 242, 229, 0.76);
+  color: #111914;
+  cursor: pointer;
+}
+
+.attachment svg {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.inputShell {
+  height: 60px;
+  padding: 5px 5px 5px 13px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #dfb65e;
+  border-radius: 999px;
+  background: rgba(255, 252, 246, 0.72);
+}
+
+.inputShell input {
+  min-width: 0;
+  height: 100%;
+  flex: 1;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #17382f;
+  font-size: 17px;
+}
+
+.inputShell input::placeholder {
+  color: #aaa8a4;
+  opacity: 1;
+}
+
+.microphone,
+.send {
+  flex: 0 0 auto;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.attachment:disabled,
+.microphone:disabled,
+.send:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.inputShell input:disabled {
+  cursor: wait;
+}
+
+.microphone {
+  width: 42px;
+  height: 42px;
+  color: #7d7f7b;
+}
+
+.microphone svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.send,
+.send img {
+  width: 40px;
+  height: 40px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 680px) {
+  .composer {
+    width: calc(100% - 24px);
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .attachment,
+  .inputShell {
+    height: 50px;
+  }
+
+  .attachment {
+    width: 48px;
+  }
+
+  .attachment svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .inputShell {
+    padding-left: 12px;
+  }
+
+  .inputShell input {
+    font-size: 14px;
+  }
+
+  .microphone {
+    display: none;
+  }
+
+  .send,
+  .send img {
+    width: 38px;
+    height: 38px;
+  }
+}

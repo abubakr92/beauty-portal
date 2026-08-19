@@ -10,9 +10,10 @@
 }
 
 .inner {
-  width: min(100% - 36px, 1340px);
+  width: 100%;
   height: 100%;
   margin-inline: auto;
+  padding-inline: 18px;
   display: flex;
   align-items: center;
   gap: 28px;
@@ -30,28 +31,29 @@
 
 .desktopNav {
   display: flex;
+  flex: 1 1 auto;
   align-items: center;
   justify-content: center;
   gap: clamp(17px, 2vw, 32px);
-  margin-left: auto;
   font-family: var(--font-display), serif;
-  font-size: 16px;
+  font-size: 18px;
+  white-space: nowrap;
 }
 
 .desktopNav a {
   transition: color 160ms ease;
 }
 
-.desktopNav a:first-child,
+.desktopNav a[aria-current="page"],
 .desktopNav a:hover {
   color: var(--gold-300);
 }
 
 .actions {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   gap: 12px;
-  margin-left: 10px;
 }
 
 .themeButton {
@@ -142,6 +144,10 @@
   font-size: 18px;
 }
 
+.mobileMenu nav a[aria-current="page"] {
+  color: var(--gold-300);
+}
+
 @media (max-width: 1120px) {
   .desktopNav {
     display: none;
@@ -163,7 +169,8 @@
   }
 
   .inner {
-    width: min(100% - 24px, 1340px);
+    width: 100%;
+    padding-inline: 12px;
   }
 
   .logo img {

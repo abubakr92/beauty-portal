@@ -1,0 +1,119 @@
+.modalLayer {
+  position: fixed;
+  z-index: 70;
+  inset: 64px 0 0;
+  display: grid;
+  overflow-y: auto;
+  padding: 12px 18px;
+  place-items: center;
+  background: rgba(20, 18, 14, 0.14);
+}
+
+.modal {
+  width: min(760px, 100%);
+  max-height: calc(100vh - 88px);
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(20, 18, 14, 0.22);
+}
+
+.modal > header {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 13px 24px;
+  border-bottom: 1px solid #e4e5e8;
+}
+
+.modal h1 {
+  margin: 0;
+  color: #1d1d1d;
+  font-family: var(--font-body), sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.closeButton {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  padding: 0 0 4px;
+  place-items: center;
+  border: 1px solid #e0e2e5;
+  border-radius: 50%;
+  background: #fff;
+  color: #181b1f;
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.content {
+  max-height: calc(100vh - 250px);
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.modal > footer {
+  display: flex;
+  min-height: 78px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 12px 24px;
+  border-top: 1px solid #e4e5e8;
+}
+
+.cancelButton,
+.saveButton {
+  width: 195px;
+  height: 54px;
+  border: 1px solid #174637;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background: #fff;
+  color: #174637;
+}
+
+.saveButton {
+  background: #174637;
+  color: #fff5e7;
+}
+
+@media (max-width: 680px) {
+  .modalLayer {
+    inset: 60px 0 0;
+    align-items: end;
+    padding: 8px;
+  }
+
+  .modal {
+    max-height: calc(100vh - 68px);
+    border-radius: 16px 16px 8px 8px;
+  }
+
+  .modal > header,
+  .content,
+  .modal > footer {
+    padding-inline: 14px;
+  }
+
+  .content {
+    max-height: calc(100vh - 230px);
+  }
+
+  .cancelButton,
+  .saveButton {
+    width: auto;
+    flex: 1;
+  }
+}

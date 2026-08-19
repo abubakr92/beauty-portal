@@ -7,7 +7,7 @@ export default function MainFooter() {
     <footer className={styles.footer}>
       <div className={styles.grid}>
         <div className={styles.brand}>
-          <Image src="/home/brand-logo.svg" alt="Nothing But Beauty Portal" width={292} height={63} />
+          <Image src="/shared/brand-logo.svg" alt="Nothing But Beauty Portal" width={292} height={63} />
           <p>A faith-centered portal connecting women through sisterhood, knowledge, wellness, and purpose — united by faith.</p>
         </div>
 

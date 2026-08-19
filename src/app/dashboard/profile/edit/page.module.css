@@ -1,0 +1,273 @@
+.editPage {
+  min-height: calc(100vh - 64px);
+  padding: 30px max(20px, calc((100vw - 1440px) / 2 + 20px)) 80px;
+  background: #f8f0e4;
+  color: #164235;
+}
+
+.editPage form > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: 26px;
+}
+
+.editPage h1 {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: clamp(50px, 4vw, 62px);
+  font-weight: 500;
+}
+
+.editPage header > div {
+  display: flex;
+  gap: 12px;
+}
+
+.cancelButton,
+.saveButton {
+  width: 180px;
+  height: 52px;
+  border: 1px solid #174637;
+  border-radius: 999px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background: transparent;
+  color: #174637;
+}
+
+.saveButton {
+  background: #164333;
+  color: #fff7e9;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 20px;
+}
+
+.personalCard,
+.businessCard {
+  display: grid;
+  gap: 19px;
+  padding: 18px;
+  border: 1px solid #eadfce;
+  border-radius: 20px;
+  background: rgba(255, 251, 246, 0.55);
+}
+
+.photoUpload {
+  position: relative;
+  width: 98px;
+  height: 98px;
+  margin-bottom: 7px;
+  cursor: pointer;
+}
+
+.photoUpload > img:first-child {
+  width: 98px;
+  height: 98px;
+  border-radius: 17px;
+  object-fit: cover;
+}
+
+.photoUpload .editPhotoIcon {
+  position: absolute;
+  right: -8px;
+  bottom: -8px;
+}
+
+.photoUpload input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.field {
+  display: grid;
+  gap: 7px;
+  font-family: var(--font-display), serif;
+  font-size: 15px;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  border: 1px solid #dfbd8a;
+  border-radius: 9px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.56);
+  color: #666;
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+}
+
+.field input,
+.field select {
+  height: 50px;
+  padding: 0 18px;
+}
+
+.field textarea {
+  min-height: 65px;
+  padding: 16px 18px;
+  resize: vertical;
+}
+
+.privacyNotice {
+  display: flex;
+  min-height: 65px;
+  align-items: center;
+  gap: 13px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #fff;
+  color: #555;
+}
+
+.privacyNotice span {
+  display: grid;
+  width: 24px;
+  height: 27px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 2px solid #111;
+  border-radius: 4px;
+}
+
+.privacyNotice p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.cardHeading h2 {
+  margin: 0;
+  color: #171717;
+  font-family: var(--font-display), serif;
+  font-size: 23px;
+}
+
+.cardHeading p {
+  margin: 1px 0 0;
+  color: #444;
+  font-family: var(--font-display), serif;
+  font-size: 13px;
+}
+
+.socialLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.socialLabel button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #cd942f;
+  font-family: var(--font-body), sans-serif;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.chipFieldset,
+.faithFieldset {
+  margin: 1px 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.chipFieldset legend,
+.faithFieldset legend {
+  margin-bottom: 11px;
+  font-family: var(--font-display), serif;
+  font-size: 16px;
+}
+
+.chipFieldset > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px;
+}
+
+.chipFieldset button {
+  height: 34px;
+  padding-inline: 15px;
+  border: 1px solid #ddd4c8;
+  border-radius: 999px;
+  background: #fffaf4;
+  color: #555;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.chipFieldset .selectedChip {
+  border-color: #164333;
+  background: #164333;
+  color: #fff;
+}
+
+.faithFieldset > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.faithFieldset button {
+  display: flex;
+  min-height: 41px;
+  align-items: center;
+  gap: 8px;
+  padding-inline: 10px;
+  border: 1px solid #e1d7c9;
+  border-radius: 7px;
+  background: transparent;
+  color: #707070;
+  text-align: left;
+  cursor: pointer;
+}
+
+.faithFieldset .selectedFaith {
+  border-color: #d8b87e;
+  background: #fffaf3;
+}
+
+@media (max-width: 900px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .editPage {
+    padding-inline: 12px;
+  }
+
+  .editPage form > header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .editPage header > div {
+    width: 100%;
+  }
+
+  .cancelButton,
+  .saveButton {
+    width: auto;
+    flex: 1;
+  }
+
+  .faithFieldset > div {
+    grid-template-columns: 1fr;
+  }
+}

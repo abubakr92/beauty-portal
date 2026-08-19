@@ -1,0 +1,158 @@
+.page {
+  position: relative;
+  height: calc(100dvh - 64px);
+  min-height: 560px;
+  overflow: hidden;
+  padding: 59px 0 30px;
+  display: flex;
+  flex-direction: column;
+  background: #f9f4e9 url("/shared/zehra-background.webp") top center / cover no-repeat;
+  color: #12382e;
+}
+
+.conversation {
+  width: min(calc(100% - 32px), 1165px);
+  min-height: 0;
+  margin: 31px auto 0;
+  padding-bottom: 16px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(7, 83, 63, 0.25) transparent;
+}
+
+.conversation article {
+  max-width: 73%;
+  display: flex;
+  align-items: flex-start;
+}
+
+.conversation article > img {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  margin-top: 2px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.conversation article > div {
+  min-width: 0;
+}
+
+.conversation p {
+  margin: 0;
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.conversation small {
+  margin-top: 7px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #aaa7a1;
+  font-size: 12px;
+}
+
+.userMessage {
+  align-self: flex-end;
+  text-align: right;
+}
+
+.userMessage p {
+  border: 1px solid #dfb65e;
+  border-radius: 13px 0 13px 13px;
+  background: rgba(255, 251, 244, 0.35);
+  color: #54534f;
+}
+
+.userMessage small {
+  justify-content: flex-end;
+}
+
+.userMessage svg {
+  width: 18px;
+  height: 13px;
+  fill: none;
+  stroke: #129cff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.assistantMessage {
+  width: 690px;
+  gap: 8px;
+}
+
+.assistantMessage > div {
+  flex: 1;
+}
+
+.assistantMessage p {
+  border-radius: 0 13px 13px 13px;
+  background: #07533f;
+  color: #f4eee1;
+}
+
+.assistantMessage small {
+  justify-content: flex-start;
+}
+
+.composer {
+  margin-top: 16px;
+  flex: 0 0 auto;
+}
+
+.typingStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6f766f;
+  font-size: 13px;
+}
+
+.typingStatus img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+@media (max-width: 680px) {
+  .page {
+    height: calc(100dvh - 60px);
+    min-height: 520px;
+    padding: 35px 0 20px;
+    background-size: auto 100%;
+  }
+
+  .conversation {
+    width: calc(100% - 24px);
+    margin-top: 35px;
+    gap: 23px;
+  }
+
+  .conversation article {
+    max-width: 92%;
+  }
+
+  .conversation article > img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .conversation p {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .composer {
+    margin-top: 12px;
+  }
+}

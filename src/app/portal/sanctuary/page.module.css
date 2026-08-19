@@ -1,0 +1,531 @@
+.page {
+  min-height: calc(100vh - 64px);
+  padding: 12px 24px 36px;
+  background: #003b30;
+  color: #3d2c09;
+}
+
+.shell {
+  position: relative;
+  width: 100%;
+  min-height: 1000px;
+  overflow: hidden;
+  margin-inline: auto;
+  padding: 26px 20px 34px;
+  border-radius: 20px;
+  background: #f8eee2;
+}
+
+.floralCorner {
+  position: absolute;
+  z-index: 0;
+  top: -37px;
+  right: 23%;
+  width: 255px;
+  height: 255px;
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+.intro {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 19px;
+}
+
+.intro h1 {
+  margin: 0;
+  color: #241805;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 36px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.intro p {
+  margin: 9px 0 0;
+  color: #74706b;
+  font-size: 15px;
+}
+
+.createButton {
+  display: inline-flex;
+  min-width: 174px;
+  min-height: 58px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #c79c5c;
+  border-radius: 999px;
+  background: #0b4336;
+  box-shadow: 0 2px 0 rgba(61, 44, 9, 0.22);
+  color: #dbb77a;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.createButton span {
+  font-family: Arial, sans-serif;
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.contentGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  align-items: start;
+  gap: 20px;
+}
+
+.feedColumn {
+  min-width: 0;
+}
+
+.categoryNav {
+  display: flex;
+  overflow-x: auto;
+  border: 1px solid rgba(179, 138, 83, 0.28);
+  border-radius: 7px;
+  background: rgba(255, 250, 243, 0.35);
+  scrollbar-width: none;
+}
+
+.categoryNav::-webkit-scrollbar {
+  display: none;
+}
+
+.categoryNav a {
+  display: inline-flex;
+  min-height: 44px;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 8px;
+  border-right: 1px solid rgba(179, 138, 83, 0.24);
+  color: #526154;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 15px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.categoryNav a:last-child {
+  border-right: 0;
+}
+
+.categoryNav .activeCategory {
+  border-color: #0b4336;
+  border-radius: 6px;
+  background: #0b4336;
+  color: #f4dfbd;
+}
+
+.categoryNav img {
+  width: 19px;
+  height: 19px;
+  object-fit: contain;
+}
+
+.pinnedSection {
+  margin-top: 17px;
+  padding: 14px 12px 12px;
+  border: 1px solid rgba(179, 138, 83, 0.16);
+  border-radius: 20px;
+  background: rgba(255, 250, 243, 0.34);
+}
+
+.pinnedSection > h2 {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 13px;
+  color: #b68a4e;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.pinnedList {
+  padding: 0 20px;
+  border: 1px solid rgba(179, 138, 83, 0.18);
+  border-radius: 17px;
+  background: rgba(255, 250, 243, 0.52);
+}
+
+.pinnedPost {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: start;
+  gap: 16px;
+  padding: 17px 4px 18px;
+}
+
+.pinnedPost + .pinnedPost {
+  border-top: 1px solid rgba(179, 138, 83, 0.2);
+}
+
+.avatar,
+.postAvatar {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.pinnedCopy h3 {
+  margin: 0;
+  color: #241805;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.pinnedCopy {
+  min-width: 0;
+}
+
+.pinnedCopy > p {
+  margin: 6px 0 12px;
+  color: #7d7770;
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.metaRow,
+.authorRow,
+.engagementRow {
+  display: flex;
+  align-items: center;
+}
+
+.metaRow {
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #77716a;
+  font-size: 13px;
+}
+
+.metaRow strong {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #efe2cb;
+  color: #77582d;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.metaRow i,
+.authorRow i,
+.engagementRow i {
+  width: 1px;
+  height: 23px;
+  background: #d4b783;
+}
+
+.commentCount {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.commentCount svg,
+.engagementRow svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.pinIcon {
+  margin-top: 3px;
+}
+
+.moreButton {
+  display: inline-flex;
+  width: 26px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.moreButton span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #1b150d;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0 14px;
+}
+
+.filters select {
+  min-height: 42px;
+  padding: 0 34px 0 13px;
+  border: 1px solid rgba(179, 138, 83, 0.22);
+  border-radius: 7px;
+  background-color: rgba(255, 250, 243, 0.64);
+  color: #3d2c09;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.postList {
+  display: grid;
+  gap: 14px;
+}
+
+.discussionCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 245px auto;
+  align-items: start;
+  gap: 16px;
+  min-height: 154px;
+  padding: 19px 14px 17px 20px;
+  border: 1px solid rgba(179, 138, 83, 0.16);
+  border-radius: 17px;
+  background: rgba(255, 250, 243, 0.48);
+}
+
+.postBody {
+  min-width: 0;
+}
+
+.authorRow {
+  flex-wrap: wrap;
+  gap: 9px;
+  color: #7e766d;
+  font-size: 12px;
+}
+
+.authorRow strong {
+  color: #372810;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.authorRow i {
+  height: 13px;
+}
+
+.postBody h2 {
+  margin: 7px 0 7px;
+  color: #241805;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.02;
+}
+
+.pinnedCopy h3,
+.pinnedCopy > p,
+.postBody h2,
+.postBody > p {
+  overflow-wrap: anywhere;
+}
+
+.postBody > p {
+  max-width: 620px;
+  margin: 0;
+  color: #7d7770;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.engagementRow {
+  gap: 13px;
+  margin-top: 14px;
+  color: #756f68;
+  font-size: 13px;
+}
+
+.engagementRow span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.engagementRow i {
+  height: 21px;
+}
+
+.postImage {
+  position: relative;
+  width: 245px;
+  height: 116px;
+  overflow: hidden;
+  border-radius: 7px;
+}
+
+.postImage img {
+  object-fit: cover;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  margin: -1px;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1180px) {
+  .contentGrid {
+    grid-template-columns: minmax(0, 1fr) 280px;
+  }
+
+  .discussionCard {
+    grid-template-columns: auto minmax(0, 1fr) 190px auto;
+  }
+
+  .postImage {
+    width: 190px;
+  }
+}
+
+@media (max-width: 980px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .floralCorner {
+    right: 8%;
+  }
+}
+
+@media (max-width: 720px) {
+  .page {
+    min-height: calc(100vh - 60px);
+    padding: 10px 12px 24px;
+  }
+
+  .shell {
+    padding: 22px 14px 26px;
+    border-radius: 16px;
+  }
+
+  .floralCorner {
+    top: -15px;
+    right: -70px;
+    width: 210px;
+    height: 210px;
+  }
+
+  .intro {
+    align-items: flex-start;
+  }
+
+  .intro > div {
+    min-width: 0;
+  }
+
+  .intro h1 {
+    font-size: 32px;
+  }
+
+  .intro p {
+    max-width: 290px;
+  }
+
+  .createButton {
+    min-width: 52px;
+    min-height: 52px;
+    padding-inline: 15px;
+    font-size: 0;
+  }
+
+  .createButton span {
+    font-size: 25px;
+  }
+
+  .pinnedList {
+    padding-inline: 13px;
+  }
+
+  .pinnedPost {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 11px;
+  }
+
+  .pinnedPost > .moreButton {
+    display: none;
+  }
+
+  .pinnedCopy h3 {
+    font-size: 19px;
+  }
+
+  .pinIcon {
+    grid-column: 3;
+  }
+
+  .filters {
+    overflow-x: auto;
+    padding-bottom: 3px;
+    scrollbar-width: none;
+  }
+
+  .discussionCard {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    padding: 17px 13px;
+  }
+
+  .discussionCard > .moreButton {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .postImage {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 190px;
+  }
+}
+
+@media (max-width: 480px) {
+  .postAvatar,
+  .avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .postBody h2 {
+    font-size: 20px;
+  }
+
+  .discussionCard {
+    column-gap: 10px;
+  }
+
+  .postImage {
+    height: 160px;
+  }
+}

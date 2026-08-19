@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-  padding: 0 max(24px, calc((100% - var(--content-width)) / 2)) 92px;
+  padding: 0 max(18px, calc((100% - var(--content-width)) / 2)) 92px;
   background-color: #073b30;
   background-image: linear-gradient(rgba(0, 38, 30, 0.04), rgba(0, 38, 30, 0.04)),
     url("/home/marble-background.png");
@@ -118,14 +118,14 @@
   padding: 18px 17px;
   border: 1px solid var(--gold-400);
   border-radius: 13px;
-  background: rgba(7, 50, 40, 0.88);
+  background: rgba(7, 50, 40, 0.97);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.08);
   transition: transform 180ms ease, background-color 180ms ease;
 }
 
 .featureCard:hover {
   transform: translateY(-4px);
-  background: rgba(13, 67, 52, 0.96);
+  background: #0d4334;
 }
 
 .featureCard img {

@@ -1,0 +1,94 @@
+.page {
+  min-height: 1771px;
+  overflow-x: hidden;
+  padding-bottom: 24px;
+  background: #073b31 url("/join-community/promotion-background.webp") top center / 100% auto no-repeat;
+}
+
+.hero {
+  min-height: 242px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 33px 44px 25px;
+  color: #e5bd75;
+}
+
+.hero > p { margin: 0 0 4px; font-size: 12px; }
+.hero h1 { margin: 0; font-family: var(--font-display), serif; font-size: 56px; font-weight: 500; letter-spacing: -.025em; line-height: 1.05; }
+.hero > span { margin-top: 10px; display: block; color: #eee1c9; font-size: 12px; }
+
+.formShell {
+  width: calc(100% - 48px);
+  max-width: 1392px;
+  min-height: 1505px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid rgba(145,104,54,.24);
+  border-radius: 20px;
+  background: #fbf4e9;
+  box-shadow: 0 8px 28px rgba(0,24,18,.14);
+}
+
+.notice { width: min(100%, 644px); min-height: 46px; padding: 10px 12px; display: flex; align-items: center; gap: 12px; border: 1px solid #ead6b6; border-radius: 8px; color: #555650; }
+.notice > span { width: 22px; height: 22px; flex: 0 0 auto; display: grid; place-items: center; border: 2px solid #d0a45e; border-radius: 50%; color: #bd8740; font-weight: 700; }
+.notice p { margin: 0; font-size: 12px; }
+
+.formGrid { margin-top: 10px; display: grid; grid-template-columns: minmax(0, 1fr) 332px; align-items: start; gap: 20px; }
+.detailsCard,
+.promotionCard { padding: 17px; border: 1px solid #e4dacb; border-radius: 18px; background: rgba(255,250,244,.55); }
+.detailsCard { display: grid; gap: 20px; }
+.detailsCard header h2 { margin: 0; font-family: var(--font-display), serif; font-size: 24px; font-weight: 500; }
+.detailsCard header p { margin: 2px 0 0; color: #555650; font-size: 11px; }
+.field { display: grid; gap: 8px; color: #272821; font-family: var(--font-display), serif; font-size: 14px; font-weight: 600; }
+.field input,
+.field select,
+.field textarea { width: 100%; min-width: 0; height: 50px; padding: 0 14px; border: 1px solid #c7c4bc; border-radius: 7px; outline: 0; background: rgba(255,252,247,.28); color: #274139; font: 13px var(--font-body), sans-serif; }
+.field textarea { height: 64px; padding-block: 12px; resize: none; }
+.field input:focus,
+.field select:focus,
+.field textarea:focus { border-color: #a77c42; box-shadow: 0 0 0 2px rgba(167,124,66,.12); }
+.field input::placeholder,
+.field textarea::placeholder { color: #9a9e9a; opacity: 1; }
+.threeColumns { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; }
+.twoColumns { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+.logoUpload { min-height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; border: 1px dashed #dfbf8c; border-radius: 8px; color: #396052; cursor: pointer; }
+.logoUpload svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.5; }
+.logoUpload strong { font-family: var(--font-display), serif; font-size: 15px; }
+.logoUpload span { color: #9c9487; font-size: 11px; }
+.fileInput { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+
+.promotionCard { padding: 20px; text-align: center; }
+.megaphone { width: 68px; height: 68px; margin-inline: auto; display: block; }
+.promotionCard > h2 { margin: 13px 0 0; font-family: var(--font-display), serif; font-size: 18px; font-weight: 500; }
+.price { margin: 2px 0 0; color: #000; font-family: var(--font-display), serif; font-size: 58px; font-weight: 600; line-height: 1; }
+.feeNote { margin: 12px 0 0; color: #555650; font-size: 12px; line-height: 1.45; }
+.includes { margin-top: 25px; text-align: left; }
+.includes h3 { margin: 0 0 15px; font-family: var(--font-display), serif; font-size: 14px; font-weight: 600; }
+.includes ul { margin: 0; padding: 0; display: grid; gap: 15px; list-style: none; color: #53554f; font-size: 12px; }
+.includes li { display: flex; align-items: flex-start; gap: 9px; }
+.includes li span { width: 18px; height: 18px; flex: 0 0 auto; display: grid; place-items: center; border: 1.5px solid #194b3b; border-radius: 50%; color: #194b3b; font-size: 10px; font-weight: 700; }
+.paymentBox { margin-top: 26px; padding: 12px; border-radius: 10px; background: #f1e2ce; text-align: left; }
+.paymentBox h3 { margin: 0; font-family: var(--font-display), serif; font-size: 14px; font-weight: 600; }
+.paymentBox p { margin: 3px 0 13px; color: #77766f; font-size: 11px; }
+.paymentLogos { height: 22px; display: flex; align-items: center; gap: 10px; }
+.paymentLogos img { width: auto; height: auto; max-height: 19px; }
+.paymentBox button { width: 100%; height: 50px; margin-top: 17px; border: 0; border-radius: 999px; background: #0d4436; color: #edd6af; font-family: var(--font-display), serif; font-size: 15px; cursor: pointer; }
+.paymentBox .secondaryButton { margin-top: 9px; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #d6aa6f; background: transparent; color: #a77942; }
+.secondaryButton img { width: 15px; height: 15px; flex: 0 0 auto; }
+
+@media (max-width: 930px) {
+  .formGrid { grid-template-columns: 1fr; }
+  .promotionCard { max-width: 500px; margin-inline: auto; }
+}
+
+@media (max-width: 700px) {
+  .page { background-size: auto 100%; }
+  .hero { min-height: 280px; padding: 34px 20px 30px; }
+  .hero h1 { font-size: clamp(42px,12vw,54px); }
+  .formShell { width: calc(100% - 20px); padding: 11px; border-radius: 16px; }
+  .notice { align-items: flex-start; }
+  .detailsCard,
+  .promotionCard { padding: 14px; border-radius: 14px; }
+  .threeColumns,
+  .twoColumns { grid-template-columns: 1fr; }
+}
