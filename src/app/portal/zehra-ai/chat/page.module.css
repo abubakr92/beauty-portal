@@ -3,7 +3,7 @@
   height: calc(100dvh - 64px);
   min-height: 560px;
   overflow: hidden;
-  padding: 59px 0 30px;
+  padding: 28px 0 18px;
   display: flex;
   flex-direction: column;
   background: #f9f4e9 url("/shared/zehra-background.webp") top center / cover no-repeat;
@@ -13,13 +13,13 @@
 .conversation {
   width: min(calc(100% - 32px), 1165px);
   min-height: 0;
-  margin: 31px auto 0;
-  padding-bottom: 16px;
+  margin: 16px auto 0;
+  padding-bottom: 8px;
   flex: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 17px;
+  gap: 12px;
   scrollbar-width: thin;
   scrollbar-color: rgba(7, 83, 63, 0.25) transparent;
 }
@@ -45,19 +45,19 @@
 
 .conversation p {
   margin: 0;
-  padding: 10px 16px;
+  padding: 9px 15px;
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.2;
 }
 
 .conversation small {
-  margin-top: 7px;
+  margin-top: 4px;
   display: flex;
   align-items: center;
   gap: 6px;
   color: #aaa7a1;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .userMessage {
@@ -106,7 +106,7 @@
 }
 
 .composer {
-  margin-top: 16px;
+  margin-top: 10px;
   flex: 0 0 auto;
 }
 
@@ -128,14 +128,14 @@
   .page {
     height: calc(100dvh - 60px);
     min-height: 520px;
-    padding: 35px 0 20px;
+    padding: 24px 0 14px;
     background-size: auto 100%;
   }
 
   .conversation {
     width: calc(100% - 24px);
-    margin-top: 35px;
-    gap: 23px;
+    margin-top: 14px;
+    gap: 12px;
   }
 
   .conversation article {

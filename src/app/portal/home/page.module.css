@@ -7,7 +7,8 @@
   background-image: linear-gradient(rgba(0, 38, 30, 0.04), rgba(0, 38, 30, 0.04)),
     url("/home/marble-background.png");
   background-position: center top;
-  background-size: 100% 100%;
+  background-repeat: repeat-y;
+  background-size: 100% auto;
   color: #f7e6c9;
 }
 
@@ -81,6 +82,19 @@
 .primaryButton:hover,
 .secondaryButton:hover {
   transform: translateY(-2px);
+}
+
+.ctaArrow {
+  display: inline-grid;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  place-items: center;
+  font-family: Arial, sans-serif;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1;
+  transform: translateY(-1px);
 }
 
 .secondaryButton:hover {
@@ -241,6 +255,8 @@
 }
 
 .productGrid article {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   min-width: 0;
   text-align: center;
 }
@@ -253,9 +269,19 @@
   font-weight: 500;
 }
 
-.productGrid img {
+.phoneStage {
+  display: flex;
   width: 100%;
-  height: auto;
+  aspect-ratio: 460 / 948;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.phoneStage img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
   filter: drop-shadow(0 22px 28px rgba(0, 0, 0, 0.2));
 }
 
@@ -451,6 +477,7 @@
 .joinSection {
   display: grid;
   grid-template-columns: 32% 68%;
+  align-items: start;
   gap: 14px;
   margin-top: 16px;
 }
@@ -464,7 +491,11 @@
 }
 
 .faqs {
+  height: 360px;
+  overflow-y: auto;
   padding: 26px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(13, 70, 55, 0.28) transparent;
 }
 
 .faqs h2,
@@ -479,6 +510,11 @@
   border: 1px solid #d4bb94;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.18);
+}
+
+.faqs details[open] {
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.34);
 }
 
 .faqs details + details {
@@ -499,6 +535,22 @@
 
 .faqs summary::-webkit-details-marker {
   display: none;
+}
+
+.faqs summary span {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  place-items: center;
+  font-family: Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1;
+  transition: transform 160ms ease;
+}
+
+.faqs details[open] summary span {
+  transform: rotate(180deg);
 }
 
 .faqs details p {
@@ -557,7 +609,11 @@
 }
 
 .waitlistCard button {
+  display: flex;
   height: 52px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   border: 0;
   border-radius: 999px;
   background: #0d4637;
@@ -613,7 +669,7 @@
 @media (max-width: 760px) {
   .page {
     padding-inline: 18px;
-    background-size: auto 100%;
+    background-size: auto 1200px;
   }
 
   .hero {
@@ -689,6 +745,10 @@
   .productGrid article {
     flex: 0 0 68vw;
     scroll-snap-align: center;
+  }
+
+  .faqs {
+    height: 430px;
   }
 
   .movement {

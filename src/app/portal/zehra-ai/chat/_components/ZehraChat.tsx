@@ -36,8 +36,13 @@ export default function ZehraChat() {
   const [isReplying, setIsReplying] = useState(false);
   const conversationRef = useRef<HTMLElement>(null);
   const replyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hasInteractedRef = useRef(false);
 
   useEffect(() => {
+    if (!hasInteractedRef.current) {
+      return;
+    }
+
     const conversationElement = conversationRef.current;
 
     if (conversationElement) {
@@ -54,6 +59,7 @@ export default function ZehraChat() {
   function sendMessage(message: string) {
     const now = getCurrentTime();
     const selectedReply = zehraReplies[Math.floor(Math.random() * zehraReplies.length)];
+    hasInteractedRef.current = true;
 
     setMessages((currentMessages) => [
       ...currentMessages,

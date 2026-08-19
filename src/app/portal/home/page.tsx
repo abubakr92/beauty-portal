@@ -98,7 +98,7 @@ export default function LandingPage() {
             </p>
             <div className={styles.heroActions}>
               <Link className={styles.primaryButton} href="/portal/join-community">
-                Join the Waitlist <span aria-hidden="true">→</span>
+                Join the Waitlist <span className={styles.ctaArrow} aria-hidden="true">→</span>
               </Link>
               <Link className={styles.secondaryButton} href="#explore">
                 Explore the Portal
@@ -132,7 +132,7 @@ export default function LandingPage() {
           <Image src="/home/quote-mark.svg" alt="" width={47} height={32} />
           <blockquote>The most beautiful woman is the one who walks in faith, helps others, and never stops growing.</blockquote>
           <Link href="/portal/zehra-ai">
-            Reflect with Zehra AI <span aria-hidden="true">→</span>
+            Reflect with Zehra AI <span className={styles.ctaArrow} aria-hidden="true">→</span>
           </Link>
           <Image className={styles.quoteFloral} src="/home/floral-outline.svg" alt="" width={121} height={120} />
         </section>
@@ -147,13 +147,15 @@ export default function LandingPage() {
             {portalProducts.map((product) => (
               <article key={product.title}>
                 <h3>{product.title}</h3>
-                <Image
-                  src={product.image}
-                  alt={`${product.title} mobile app preview`}
-                  width={460}
-                  height={948}
-                  sizes="(max-width: 700px) 70vw, (max-width: 1000px) 34vw, 220px"
-                />
+                <div className={styles.phoneStage}>
+                  <Image
+                    src={product.image}
+                    alt={`${product.title} mobile app preview`}
+                    width={product.title === "Zehra AI" ? 486 : 460}
+                    height={product.title === "Zehra AI" ? 985 : 948}
+                    sizes="(max-width: 700px) 70vw, (max-width: 1000px) 34vw, 220px"
+                  />
+                </div>
               </article>
             ))}
           </div>
@@ -229,7 +231,7 @@ export default function LandingPage() {
           <div className={styles.faqs}>
             <h2>Frequently Asked Questions</h2>
             {faqs.map((faq) => (
-              <details key={faq.question}>
+              <details key={faq.question} name="home-faq">
                 <summary>{faq.question}<span aria-hidden="true">⌄</span></summary>
                 <p>{faq.answer}</p>
               </details>
@@ -250,7 +252,7 @@ export default function LandingPage() {
                 <span>Email Address</span>
                 <input type="email" name="email" placeholder="Email Address" autoComplete="email" />
               </label>
-              <button type="button">Join the Waitlist <span aria-hidden="true">→</span></button>
+              <button type="button">Join the Waitlist <span className={styles.ctaArrow} aria-hidden="true">→</span></button>
             </form>
           </div>
         </section>
