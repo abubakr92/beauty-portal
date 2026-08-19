@@ -477,7 +477,7 @@
 .joinSection {
   display: grid;
   grid-template-columns: 32% 68%;
-  align-items: start;
+  align-items: stretch;
   gap: 14px;
   margin-top: 16px;
 }
