@@ -39,7 +39,7 @@ const features = [
 const portalProducts = [
   { title: "Business Directory", image: "/home/phone-directory.png" },
   { title: "Sanctuary", image: "/home/phone-sanctuary.png" },
-  { title: "Zehra AI", image: "/home/phone-zehra-ai.png" },
+  { title: "Zehra AI", image: "/home/phone-zehra-ai.png", trimTransparentCanvas: true },
   { title: "Events", image: "/home/phone-events.png" },
   { title: "Resources", image: "/home/phone-resources.png" },
 ];
@@ -149,6 +149,7 @@ export default function LandingPage() {
                 <h3>{product.title}</h3>
                 <div className={styles.phoneStage}>
                   <Image
+                    className={product.trimTransparentCanvas ? styles.trimmedPhone : undefined}
                     src={product.image}
                     alt={`${product.title} mobile app preview`}
                     width={product.title === "Zehra AI" ? 486 : 460}
