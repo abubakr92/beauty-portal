@@ -73,8 +73,7 @@
   height: 40px;
 }
 
-.signIn,
-.join {
+.signIn {
   display: inline-flex;
   height: 40px;
   align-items: center;
@@ -89,12 +88,6 @@
 
 .signIn {
   border: 1px solid var(--gold-400);
-}
-
-.join {
-  border: 1px solid #f1c982;
-  background: linear-gradient(100deg, #f6ddaf, #e5b969 55%, #ffedc6);
-  color: #18352b;
 }
 
 .mobileMenu {

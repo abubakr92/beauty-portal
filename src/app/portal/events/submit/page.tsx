@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Promote Your Workshop | Nothing But Beauty",
+  title: "Submit Your Event | Nothing But Beauty",
   description: "Submit an upcoming workshop or event for promotion across the Nothing But Beauty community.",
 };
 

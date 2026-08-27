@@ -26,9 +26,6 @@ export default function MainHeader() {
           <Link className={styles.signIn} href="/auth/login">
             Sign In
           </Link>
-          <Link className={styles.join} href="/portal/join-community">
-            Join Waitlist
-          </Link>
         </div>
 
         <details className={styles.mobileMenu}>

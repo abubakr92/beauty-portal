@@ -43,10 +43,7 @@ export default function MainNavigation({ ariaLabel, className, showAccountLinks 
         </Link>
       ))}
       {showAccountLinks && (
-        <>
-          <Link href="/auth/login">Sign In</Link>
-          <Link href="/portal/join-community">Join Waitlist</Link>
-        </>
+        <Link href="/auth/login">Sign In</Link>
       )}
     </nav>
   );

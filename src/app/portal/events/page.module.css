@@ -152,16 +152,19 @@
   display: none;
 }
 
-.categoryTabs a {
+.categoryTabs button {
   position: relative;
   flex: 0 0 auto;
   padding: 0 20px 12px;
+  border: 0;
+  background: transparent;
   color: #aa8d5d;
+  cursor: pointer;
   font-family: var(--font-display), serif;
   font-size: 15px;
 }
 
-.categoryTabs a:first-child {
+.categoryTabs button:first-child {
   padding-left: 18px;
 }
 
@@ -190,6 +193,39 @@
 .eventList {
   display: grid;
   gap: 18px;
+}
+
+.emptyEvents {
+  min-height: 250px;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #e8dccb;
+  border-radius: 15px;
+  background: rgba(255, 250, 243, 0.58);
+  color: #766147;
+  text-align: center;
+}
+
+.emptyEvents strong {
+  color: #284b3e;
+  font-family: var(--font-display), serif;
+  font-size: 22px;
+}
+
+.emptyEvents button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: 1px solid #174b3c;
+  border-radius: 999px;
+  background: transparent;
+  color: #174b3c;
+  cursor: pointer;
+  font-family: var(--font-display), serif;
+  font-size: 15px;
 }
 
 .eventCard {
@@ -434,19 +470,37 @@
   font-weight: 400;
 }
 
-.calendar td span {
+.calendar td button {
   width: 30px;
   height: 30px;
   margin: auto;
   display: grid;
   place-items: center;
+  border: 0;
   border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
 }
 
 .calendar td .eventDay {
   background: #0d4a39;
   color: #fff8ed;
   font-weight: 700;
+}
+
+.calendar td .selectedDay {
+  outline: 2px solid #c2954d;
+  outline-offset: 2px;
+}
+
+.calendarStatus {
+  min-height: 16px;
+  margin: 2px 0 0;
+  color: #86765f;
+  font-size: 11px;
+  text-align: center;
 }
 
 .categoryList {
@@ -457,13 +511,27 @@
   list-style: none;
 }
 
-.categoryList li {
+.categoryList li button {
+  width: 100%;
+  padding: 3px 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
   color: #766147;
+  cursor: pointer;
   font-family: var(--font-display), serif;
   font-size: 16px;
+  text-align: left;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.categoryList li button:hover,
+.categoryList li .activeCategory {
+  background: rgba(13, 74, 57, 0.09);
+  color: #174b3c;
 }
 
 .categoryList strong {
@@ -473,6 +541,18 @@
   background: #f0e2c9;
   color: #795d31;
   font: 700 12px var(--font-body), sans-serif;
+  text-align: center;
+}
+
+.categoryReset {
+  width: 100%;
+  margin-top: 12px;
+  border: 0;
+  background: transparent;
+  color: #6b5436;
+  cursor: pointer;
+  font-family: var(--font-display), serif;
+  font-size: 15px;
   text-align: center;
 }
 
@@ -535,7 +615,7 @@
   font-size: 13px;
 }
 
-.submitCard button {
+.submitCard > a {
   width: 100%;
   height: 50px;
   margin-top: 18px;
@@ -600,6 +680,10 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .submitCard {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 700px) {
@@ -627,7 +711,7 @@
     grid-column: auto;
   }
 
-  .categoryTabs a {
+  .categoryTabs button {
     padding-inline: 15px;
   }
 

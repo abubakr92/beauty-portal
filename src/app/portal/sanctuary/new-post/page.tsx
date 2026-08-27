@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import SanctuarySidebar from "../_components/SanctuarySidebar";
 import { postTags, sanctuaryCategories } from "../data";
+import PublishPostForm from "./PublishPostForm";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export default function NewSanctuaryPostPage() {
         </header>
 
         <div className={styles.contentGrid}>
-          <form className={styles.formCard} aria-label="Create a Sanctuary post">
+          <PublishPostForm className={styles.formCard}>
             <label className={styles.field}>
               <span>Category</span>
               <select name="category" defaultValue="" required>
@@ -97,7 +98,9 @@ export default function NewSanctuaryPostPage() {
               </strong>
               <p>No hate speech, harassment, explicit content, misinformation, or requests for religious rulings.</p>
             </aside>
-          </form>
+
+            <button className={styles.publishButton} type="submit">Publish Your Post</button>
+          </PublishPostForm>
 
           <SanctuarySidebar compact />
         </div>

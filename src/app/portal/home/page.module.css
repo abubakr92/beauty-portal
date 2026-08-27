@@ -488,16 +488,12 @@
 }
 
 .joinSection {
-  display: grid;
-  grid-template-columns: 32% 68%;
-  align-items: stretch;
-  gap: 14px;
   margin-top: 16px;
 }
 
-.faqs,
-.waitlistCard {
+.faqs {
   box-sizing: border-box;
+  width: 100%;
   height: 360px;
   border: 2px solid #bb9155;
   border-radius: 22px;
@@ -512,8 +508,7 @@
   scrollbar-color: rgba(13, 70, 55, 0.28) transparent;
 }
 
-.faqs h2,
-.waitlistCard h2 {
+.faqs h2 {
   margin: 0 0 18px;
   font-family: var(--font-display), serif;
   font-size: 27px;
@@ -574,69 +569,6 @@
   line-height: 1.4;
 }
 
-.waitlistCard {
-  display: grid;
-  grid-template-columns: 40% 60%;
-  align-items: center;
-  padding: 34px 42px;
-}
-
-.waitlistCard > div {
-  padding-right: 40px;
-  text-align: center;
-}
-
-.waitlistCard > div p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.35;
-}
-
-.waitlistCard form {
-  display: grid;
-  gap: 13px;
-}
-
-.waitlistCard label span {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-}
-
-.waitlistCard input {
-  width: 100%;
-  height: 50px;
-  border: 1px solid #cba977;
-  border-radius: 9px;
-  outline: none;
-  padding: 0 18px;
-  background: rgba(255, 255, 255, 0.16);
-  color: #17382d;
-  font-size: 13px;
-}
-
-.waitlistCard input:focus {
-  border-color: #0d4637;
-  box-shadow: 0 0 0 3px rgba(13, 70, 55, 0.12);
-}
-
-.waitlistCard button {
-  display: flex;
-  height: 52px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  border: 0;
-  border-radius: 999px;
-  background: #0d4637;
-  color: white;
-  cursor: pointer;
-  font-family: var(--font-display), serif;
-  font-size: 16px;
-}
-
 @media (max-width: 1050px) {
   .hero {
     min-height: 880px;
@@ -675,9 +607,6 @@
     grid-column: 1 / -1;
   }
 
-  .joinSection {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 760px) {
@@ -795,15 +724,6 @@
     grid-column: auto;
   }
 
-  .waitlistCard {
-    grid-template-columns: 1fr;
-    gap: 26px;
-    padding: 30px 24px;
-  }
-
-  .waitlistCard > div {
-    padding-right: 0;
-  }
 }
 
 @media (max-width: 480px) {

@@ -110,7 +110,7 @@ export default function JoinCommunityPage() {
           <span className={styles.toggle}><input type="checkbox" name="annual" /><i /><em>Annual Plan</em></span>
         </label>
 
-        <Link className={styles.continueButton} href="/portal/join-community/submit">Continue →</Link>
+        <Link className={styles.continueButton} href="/dashboard">Continue →</Link>
         <p className={styles.reviewNote}>🔒 You can review and edit your information before completing.</p>
 
         <section className={styles.values} aria-label="Community values">

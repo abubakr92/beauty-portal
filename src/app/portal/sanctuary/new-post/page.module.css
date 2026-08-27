@@ -303,6 +303,31 @@
   font-size: 13px;
 }
 
+.publishButton {
+  width: min(100%, 360px);
+  height: 52px;
+  margin-left: auto;
+  border: 0;
+  border-radius: 999px;
+  background: #0d493a;
+  color: #f3d6a5;
+  cursor: pointer;
+  font-family: var(--font-display), Georgia, serif;
+  font-size: 17px;
+  font-weight: 600;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.publishButton:hover {
+  background: #123f34;
+  transform: translateY(-1px);
+}
+
+.publishButton:focus-visible {
+  outline: 3px solid rgba(184, 139, 75, 0.35);
+  outline-offset: 3px;
+}
+
 @media (max-width: 1050px) {
   .contentGrid {
     grid-template-columns: minmax(0, 1fr) 290px;

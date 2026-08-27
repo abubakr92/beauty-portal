@@ -1,4 +1,3 @@
-import MainHeader from "@/components/shared/MainHeader";
 import Image from "next/image";
 import styles from "./layout.module.css";
 
@@ -29,9 +28,7 @@ const communityValues = [
 
 export default function AuthLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <>
-      <MainHeader />
-      <main className={styles.authShell}>
+    <main className={styles.authShell}>
         <aside className={styles.storyPanel}>
           <div className={styles.intro}>
             <p>FAITH | SISTERHOOD | GROWTH | PURPOSE</p>
@@ -80,7 +77,6 @@ export default function AuthLayout({ children }: Readonly<{ children: React.Reac
         </aside>
 
         <section className={styles.formStage}>{children}</section>
-      </main>
-    </>
+    </main>
   );
 }

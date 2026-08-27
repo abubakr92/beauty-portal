@@ -238,24 +238,6 @@ export default function LandingPage() {
               </details>
             ))}
           </div>
-
-          <div className={styles.waitlistCard}>
-            <div>
-              <h2>Join the Waitlist</h2>
-              <p>Be the first to get early access, exclusive updates, and special launch perks.</p>
-            </div>
-            <form>
-              <label>
-                <span>Full Name</span>
-                <input type="text" name="name" placeholder="Full Name" autoComplete="name" />
-              </label>
-              <label>
-                <span>Email Address</span>
-                <input type="email" name="email" placeholder="Email Address" autoComplete="email" />
-              </label>
-              <button type="button">Join the Waitlist <span className={styles.ctaArrow} aria-hidden="true">→</span></button>
-            </form>
-          </div>
         </section>
       </main>
       <MainFooter />
