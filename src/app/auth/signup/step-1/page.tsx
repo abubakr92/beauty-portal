@@ -7,6 +7,7 @@ import PrimaryButton from "../../_components/PrimaryButton";
 import SignupHeader from "../../_components/SignupHeader";
 import SocialButtons from "../../_components/SocialButtons";
 import styles from "../../auth.module.css";
+import LegalModalLink from "@/components/shared/LegalModalLink";
 
 export const metadata: Metadata = {
   title: "Create Your Account | Nothing But Beauty",
@@ -25,7 +26,7 @@ export default function SignupAccountPage() {
 
           <label className={styles.agreement}>
             <input name="termsAccepted" type="checkbox" required />
-            <span>I agree to the <Link href="/portal/home#about">Terms of Service</Link> and <Link href="/portal/home#about">Privacy Policy</Link></span>
+            <span>I agree to the <LegalModalLink document="terms">Terms of Service</LegalModalLink> and <LegalModalLink document="privacy">Privacy Policy</LegalModalLink></span>
           </label>
 
           <PrimaryButton>Continue</PrimaryButton>

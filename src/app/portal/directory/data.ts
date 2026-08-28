@@ -68,6 +68,24 @@ export const featuredBusinesses: FeaturedBusiness[] = [
     image: "/shared/business-mosque-night.png",
     avatar: "/directory/business-nour-hamza.png",
   },
+  {
+    id: "plants-bookish-decals",
+    name: "Plants & Bookish Decals",
+    category: "Home & Decor",
+    rating: 5,
+    reviews: 20,
+    image: "/directory/listing-plants-books.png",
+    avatar: "/directory/business-light-legacy.png",
+  },
+  {
+    id: "haze-beauty-studio",
+    name: "Haze Beauty Studio",
+    category: "Beauty & Skincare",
+    rating: 5,
+    reviews: 20,
+    image: "/shared/mosque-hill.png",
+    avatar: "/dashboard/messages/fatima-khan.png",
+  },
 ];
 
 export const businessListings: BusinessListing[] = [

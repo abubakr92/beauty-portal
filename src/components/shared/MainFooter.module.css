@@ -33,15 +33,27 @@
   font-weight: 500;
 }
 
-.grid a {
+.grid a,
+.grid button {
   display: block;
   width: fit-content;
   margin: 0 0 10px;
   font-size: 13px;
 }
 
-.grid a:hover {
+.grid a:hover,
+.grid button:hover {
   color: var(--gold-300);
+}
+
+.grid button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
 }
 
 .reminder {

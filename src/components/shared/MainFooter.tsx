@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LegalModalLink from "./LegalModalLink";
 import styles from "./MainFooter.module.css";
 
 export default function MainFooter() {
@@ -32,8 +33,8 @@ export default function MainFooter() {
           <h2>Support</h2>
           <Link href="/portal/resources">Help Center</Link>
           <Link href="/portal/sanctuary#community-guidelines">Community Guidelines</Link>
-          <Link href="/portal/home#about">Privacy Policy</Link>
-          <Link href="/portal/home#about">Terms of Service</Link>
+          <LegalModalLink document="privacy">Privacy Policy</LegalModalLink>
+          <LegalModalLink document="terms">Terms of Service</LegalModalLink>
         </div>
 
         <div className={styles.reminder}>

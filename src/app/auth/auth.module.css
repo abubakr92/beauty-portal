@@ -284,7 +284,8 @@
   accent-color: #154736;
 }
 
-.agreement a {
+.agreement a,
+.agreement button {
   color: #d1a05d;
   font-weight: 600;
 }

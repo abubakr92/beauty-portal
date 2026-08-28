@@ -20,34 +20,19 @@
 }
 
 html {
+  max-width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
-html[data-theme="dark"] {
-  --gold-300: #f0cf94;
-  --gold-400: #e2ba79;
-}
-
 body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
   margin: 0;
   background: var(--emerald-950);
   color: var(--ink);
   font-family: var(--font-body), Arial, sans-serif;
-}
-
-body::after {
-  position: fixed;
-  z-index: 10000;
-  inset: 0;
-  background: rgba(0, 26, 21, 0.22);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 220ms ease;
-  content: "";
-}
-
-html[data-theme="dark"] body::after {
-  opacity: 1;
 }
 
 a {

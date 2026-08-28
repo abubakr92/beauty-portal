@@ -171,6 +171,15 @@
   font-size: 15px;
 }
 
+.categoryPill,
+.activePill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  line-height: 1;
+}
+
 .activePill {
   border-color: #0b4738;
   background: #0a4737;
@@ -178,8 +187,10 @@
 }
 
 .activePill img {
-  margin-right: 7px;
-  vertical-align: -3px;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  display: block;
 }
 
 .selectFilters select {
@@ -203,6 +214,74 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+  animation: carouselNextIn 560ms cubic-bezier(.22, .7, .24, 1) both;
+  will-change: opacity, transform;
+}
+
+.featuredGrid[data-direction="previous"] {
+  animation-name: carouselPreviousIn;
+}
+
+@keyframes carouselNextIn {
+  from { opacity: 0; transform: translateX(34px) scale(.985); filter: blur(2px); }
+  to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+}
+
+@keyframes carouselPreviousIn {
+  from { opacity: 0; transform: translateX(-34px) scale(.985); filter: blur(2px); }
+  to { opacity: 1; transform: translateX(0) scale(1); filter: blur(0); }
+}
+
+.featuredCarousel {
+  display: grid;
+  gap: 13px;
+}
+
+.carouselControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.carouselControls > button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid #b99a68;
+  border-radius: 50%;
+  background: transparent;
+  color: #174b3c;
+  cursor: pointer;
+  transition: transform 180ms ease, background 180ms ease, color 180ms ease;
+}
+
+.carouselControls > button:hover {
+  transform: scale(1.08);
+  background: #174b3c;
+  color: #fff6e7;
+}
+
+.carouselDots {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.carouselDots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #cfc2ae;
+  cursor: pointer;
+  transition: width 240ms ease, background 240ms ease, transform 180ms ease;
+}
+
+.carouselDots button[aria-pressed="true"] {
+  width: 24px;
+  border-radius: 999px;
+  background: #174b3c;
 }
 
 .featuredCard {
@@ -212,10 +291,21 @@
   display: block;
   border-radius: 18px;
   background: #ddd2c2;
+  transition: transform 240ms ease, box-shadow 240ms ease;
+}
+
+.featuredCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 28px rgba(9, 52, 41, .2);
 }
 
 .featuredCard > img {
   object-fit: cover;
+  transition: transform 700ms cubic-bezier(.22, .7, .24, 1);
+}
+
+.featuredCard:hover > img {
+  transform: scale(1.035);
 }
 
 .featuredDetails {
@@ -410,14 +500,19 @@
 
 .sidebarCard h2 {
   margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-display), serif;
   font-size: 21px;
   font-weight: 600;
+  line-height: 1.1;
 }
 
 .sidebarCard h2 img {
-  margin-right: 10px;
-  vertical-align: -5px;
+  flex: 0 0 auto;
+  display: block;
+  margin: 0;
 }
 
 .sidebarCard > a {
@@ -501,18 +596,46 @@
 }
 
 .memberCard {
+  position: relative;
   min-height: 210px;
   padding: 20px 18px 16px;
   display: flex;
   flex-direction: column;
   border: 1px solid #cba557;
   border-radius: 16px;
-  background: #073e32 url("/directory/membership-card.png") center / cover no-repeat;
+  background: linear-gradient(145deg, #0c4a3b, #032e25);
   color: #f0cf8d;
 }
 
+.membershipBadges {
+  position: absolute;
+  top: 13px;
+  right: 12px;
+  width: 105px;
+  height: 78px;
+}
+
+.membershipBadges img {
+  position: absolute;
+  width: 67px;
+  height: 67px;
+  object-fit: contain;
+  filter: drop-shadow(0 7px 10px rgba(0, 0, 0, .3));
+}
+
+.membershipBadges img:first-child {
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.membershipBadges img:last-child {
+  right: 0;
+  bottom: 0;
+}
+
 .memberCard h2 {
-  max-width: 190px;
+  max-width: 165px;
   margin: 0;
   font-family: var(--font-display), serif;
   font-size: 24px;
@@ -521,7 +644,7 @@
 }
 
 .memberCard p {
-  max-width: 190px;
+  max-width: 195px;
   margin: 13px 0;
   color: #f4e5c8;
   font-size: 13px;
@@ -539,6 +662,15 @@
   color: #9a7242;
   font-family: var(--font-display), serif;
   font-size: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featuredGrid { animation: none; }
+
+  .featuredCard,
+  .featuredCard > img,
+  .carouselControls > button,
+  .carouselDots button { transition: none; }
 }
 
 .visuallyHidden {
@@ -560,6 +692,9 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .memberCard h2 { max-width: 240px; }
+  .memberCard p { max-width: min(70%, 480px); }
 }
 
 @media (max-width: 820px) {
@@ -573,8 +708,10 @@
   }
 
   .featuredGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .featuredCard[data-position="2"] { display: none; }
 
   .featuredCard {
     height: 340px;
@@ -591,9 +728,17 @@
   }
 
   .hero {
+    width: 100vw;
+    max-width: 100vw;
     min-height: 0;
     padding: 28px 20px 34px;
   }
+
+  .hero > *,
+  .heroQuote,
+  .heroIntro { min-width: 0; max-width: 100%; }
+
+  .heroQuote p { overflow-wrap: anywhere; }
 
   .heroIntro h1 {
     font-size: 43px;
@@ -604,7 +749,8 @@
   }
 
   .directoryShell {
-    width: calc(100% - 20px);
+    width: calc(100vw - 20px);
+    max-width: calc(100vw - 20px);
     padding: 12px;
     border-radius: 16px;
   }
@@ -623,6 +769,10 @@
   .featuredCard {
     height: 310px;
   }
+
+  .featuredGrid { grid-template-columns: 1fr; }
+
+  .featuredCard[data-position="1"] { display: none; }
 
   .businessSummary {
     grid-template-columns: 1fr;

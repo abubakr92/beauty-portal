@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import MainNavigation from "./MainNavigation";
-import ThemeButton from "./ThemeButton";
+import LogoutLink from "./LogoutLink";
 import styles from "./MainHeader.module.css";
 
 export default function MainHeader() {
@@ -21,10 +21,7 @@ export default function MainHeader() {
         <MainNavigation className={styles.desktopNav} ariaLabel="Primary navigation" />
 
         <div className={styles.actions}>
-          <ThemeButton />
-          <Link className={styles.signIn} href="/auth/login">
-            Sign In
-          </Link>
+          <LogoutLink className={styles.signIn} />
         </div>
 
         <details className={styles.mobileMenu}>

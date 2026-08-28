@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import FeedbackButton from "@/components/shared/FeedbackButton";
 import {
   businessListings,
@@ -31,6 +31,38 @@ export default function BusinessDirectoryPage() {
   const [featured, setFeatured] = useState("all");
   const [sort, setSort] = useState("recommended");
   const [visibleCount, setVisibleCount] = useState(4);
+  const [featuredIndex, setFeaturedIndex] = useState(0);
+  const [carouselPaused, setCarouselPaused] = useState(false);
+  const [carouselDirection, setCarouselDirection] = useState<"next" | "previous">("next");
+  const [carouselRevision, setCarouselRevision] = useState(0);
+
+  const visibleFeatured = useMemo(
+    () => Array.from({ length: 3 }, (_, offset) => featuredBusinesses[(featuredIndex + offset) % featuredBusinesses.length]),
+    [featuredIndex],
+  );
+
+  useEffect(() => {
+    if (carouselPaused) return;
+    const timer = window.setInterval(() => {
+      setCarouselDirection("next");
+      setFeaturedIndex((current) => (current + 1) % featuredBusinesses.length);
+      setCarouselRevision((current) => current + 1);
+    }, 3000);
+    return () => window.clearInterval(timer);
+  }, [carouselPaused]);
+
+  function moveCarousel(direction: "next" | "previous") {
+    const offset = direction === "next" ? 1 : -1;
+    setCarouselDirection(direction);
+    setFeaturedIndex((current) => (current + offset + featuredBusinesses.length) % featuredBusinesses.length);
+    setCarouselRevision((current) => current + 1);
+  }
+
+  function chooseFeatured(index: number) {
+    setCarouselDirection(index >= featuredIndex ? "next" : "previous");
+    setFeaturedIndex(index);
+    setCarouselRevision((current) => current + 1);
+  }
 
   const filteredBusinesses = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -149,9 +181,19 @@ export default function BusinessDirectoryPage() {
 
           <section className={styles.businessSection} aria-labelledby="featured-businesses">
             <h2 id="featured-businesses">Featured Businesses</h2>
-            <div className={styles.featuredGrid}>
-              {featuredBusinesses.map((business) => (
-                <Link className={styles.featuredCard} href={`/portal/directory/${business.id}`} key={business.id}>
+            <div
+              aria-label="Featured businesses carousel"
+              aria-roledescription="carousel"
+              className={styles.featuredCarousel}
+              onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setCarouselPaused(false); }}
+              onFocus={() => setCarouselPaused(true)}
+              onMouseEnter={() => setCarouselPaused(true)}
+              onMouseLeave={() => setCarouselPaused(false)}
+              role="region"
+            >
+              <div aria-live="polite" className={styles.featuredGrid} data-direction={carouselDirection} key={carouselRevision}>
+              {visibleFeatured.map((business, position) => (
+                <Link className={styles.featuredCard} data-position={position} href={`/portal/directory/${business.id}`} key={business.id}>
                   <Image src={business.image} alt="" fill sizes="(max-width: 740px) 100vw, 30vw" />
                   <div className={styles.featuredDetails}>
                     <Image src={business.avatar} alt="" width={44} height={44} />
@@ -165,6 +207,16 @@ export default function BusinessDirectoryPage() {
                   </div>
                 </Link>
               ))}
+              </div>
+              <div className={styles.carouselControls}>
+                <button aria-label="Previous featured businesses" onClick={() => moveCarousel("previous")} type="button">←</button>
+                <div aria-label="Choose featured slide" className={styles.carouselDots}>
+                  {featuredBusinesses.map((business, index) => (
+                    <button aria-label={`Show ${business.name}`} aria-pressed={featuredIndex === index} key={business.id} onClick={() => chooseFeatured(index)} type="button" />
+                  ))}
+                </div>
+                <button aria-label="Next featured businesses" onClick={() => moveCarousel("next")} type="button">→</button>
+              </div>
             </div>
           </section>
 
@@ -239,9 +291,13 @@ export default function BusinessDirectoryPage() {
           </section>
 
           <section className={styles.memberCard}>
-            <h2>Become a Business Member</h2>
-            <p>Claim your profile, connect, and reach thousands of women in our community.</p>
-            <Link href="/portal/join-community">Get Your Business</Link>
+            <div aria-label="Emerald and Gold membership options" className={styles.membershipBadges} role="img">
+              <Image src="/join-community/membership-emerald.webp" alt="" width={72} height={72} />
+              <Image src="/join-community/membership-gold.webp" alt="" width={72} height={72} />
+            </div>
+            <h2>Grow Your Business With Us</h2>
+            <p>Showcase your business, build visibility, and connect with women looking for trusted services, products, and professionals in their community.</p>
+            <Link href="/portal/join-community">List Your Business</Link>
           </section>
         </aside>
       </section>

@@ -1,16 +1,25 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { hasActiveMembership } from "@/lib/membership";
+import LogoutLink from "./LogoutLink";
 
-const navigation = [
+type NavigationItem = {
+  label: string;
+  href: string;
+  membershipHref?: string;
+};
+
+const navigation: NavigationItem[] = [
   { label: "Home", href: "/portal/home" },
-  { label: "Business Dashboard", href: "/dashboard" },
   { label: "Directory", href: "/portal/directory" },
   { label: "Sanctuary", href: "/portal/sanctuary" },
   { label: "Zehra AI", href: "/portal/zehra-ai" },
   { label: "Events", href: "/portal/events" },
   { label: "Resources", href: "/portal/resources" },
+  { label: "Business Dashboard", href: "/dashboard", membershipHref: "/portal/join-community" },
   { label: "About Us", href: "/portal/home#about" },
 ];
 
@@ -22,6 +31,19 @@ type MainNavigationProps = {
 
 export default function MainNavigation({ ariaLabel, className, showAccountLinks = false }: MainNavigationProps) {
   const pathname = usePathname();
+  const [paidMember, setPaidMember] = useState(false);
+
+  useEffect(() => {
+    const syncMembership = () => setPaidMember(hasActiveMembership());
+    const frame = window.requestAnimationFrame(syncMembership);
+    window.addEventListener("storage", syncMembership);
+    window.addEventListener("nbb:membership-change", syncMembership);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("storage", syncMembership);
+      window.removeEventListener("nbb:membership-change", syncMembership);
+    };
+  }, []);
 
   function isCurrentPage(href: string) {
     if (href.includes("#")) {
@@ -37,13 +59,12 @@ export default function MainNavigation({ ariaLabel, className, showAccountLinks 
 
   return (
     <nav className={className} aria-label={ariaLabel}>
-      {navigation.map((item) => (
-        <Link key={item.label} href={item.href} aria-current={isCurrentPage(item.href) ? "page" : undefined}>
-          {item.label}
-        </Link>
-      ))}
+      {navigation.map((item) => {
+        const href = item.membershipHref && !paidMember ? item.membershipHref : item.href;
+        return <Link key={item.label} href={href} aria-current={isCurrentPage(item.href) ? "page" : undefined}>{item.label}</Link>;
+      })}
       {showAccountLinks && (
-        <Link href="/auth/login">Sign In</Link>
+        <LogoutLink />
       )}
     </nav>
   );
