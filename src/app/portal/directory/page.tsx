@@ -1,6 +1,9 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo, useState, type FormEvent } from "react";
+import FeedbackButton from "@/components/shared/FeedbackButton";
 import {
   businessListings,
   categoryFilters,
@@ -10,11 +13,6 @@ import {
   trendingCategories,
 } from "./data";
 import styles from "./page.module.css";
-
-export const metadata: Metadata = {
-  title: "Business Directory | Nothing But Beauty",
-  description: "Discover women-owned businesses, services, and resources aligned with your values.",
-};
 
 function StarRating({ rating, reviews }: { rating: number; reviews: number }) {
   return (
@@ -26,6 +24,52 @@ function StarRating({ rating, reviews }: { rating: number; reviews: number }) {
 }
 
 export default function BusinessDirectoryPage() {
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState("All Categories");
+  const [location, setLocation] = useState("all");
+  const [pricing, setPricing] = useState("all");
+  const [featured, setFeatured] = useState("all");
+  const [sort, setSort] = useState("recommended");
+  const [visibleCount, setVisibleCount] = useState(4);
+
+  const filteredBusinesses = useMemo(() => {
+    const normalizedQuery = query.trim().toLowerCase();
+    const categoryMap: Record<string, string[]> = {
+      Wellness: ["Beauty & Skincare"],
+      "Fashion/Clothing": ["Home & Decor"],
+      Education: ["Education"],
+      Shops: ["Home & Decor", "Photography"],
+      Prayer: ["Education"],
+    };
+
+    const results = businessListings.filter((business, index) => {
+      const matchesQuery = !normalizedQuery || `${business.name} ${business.description} ${business.category} ${business.location}`.toLowerCase().includes(normalizedQuery);
+      const mappedCategories = categoryMap[category];
+      const matchesCategory = category === "All Categories" || mappedCategories?.includes(business.category);
+      const matchesLocation = location === "all" || business.location.toLowerCase().includes(location.toLowerCase());
+      const matchesFeatured = featured === "all" || (featured === "featured" ? index < 2 : index >= 2);
+      const matchesPricing = pricing === "all" || (pricing === "budget" ? index % 2 === 0 : index % 2 === 1);
+      return matchesQuery && matchesCategory && matchesLocation && matchesFeatured && matchesPricing;
+    });
+
+    return [...results].sort((first, second) => {
+      if (sort === "rating") return second.rating - first.rating;
+      if (sort === "name") return first.name.localeCompare(second.name);
+      return 0;
+    });
+  }, [category, featured, location, pricing, query, sort]);
+
+  function applySearch(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setVisibleCount(4);
+    document.getElementById("all-businesses")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function chooseCategory(nextCategory: string) {
+    setCategory(nextCategory);
+    setVisibleCount(4);
+  }
+
   return (
     <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="directory-title">
@@ -45,18 +89,18 @@ export default function BusinessDirectoryPage() {
 
       <section className={styles.directoryShell} aria-label="Browse businesses">
         <div className={styles.directoryMain}>
-          <form className={styles.searchFilters} action="/portal/directory" method="get">
+          <form className={styles.searchFilters} onSubmit={applySearch}>
             <label className={styles.searchBox}>
               <span className={styles.searchIcon} aria-hidden="true" />
               <span className={styles.visuallyHidden}>Search businesses</span>
-              <input name="query" type="search" placeholder="Search businesses, services, or keywords..." />
+              <input name="query" onChange={(event) => setQuery(event.target.value)} value={query} type="search" placeholder="Search businesses, services, or keywords..." />
             </label>
 
             <div className={styles.categoryPills} aria-label="Business categories">
-              {categoryFilters.map((category, index) => (
-                <button className={index === 0 ? styles.activePill : styles.categoryPill} key={`${category}-${index}`} type="button">
+              {categoryFilters.map((categoryLabel, index) => (
+                <button aria-pressed={category === categoryLabel} className={category === categoryLabel ? styles.activePill : styles.categoryPill} key={`${categoryLabel}-${index}`} onClick={() => chooseCategory(categoryLabel)} type="button">
                   {index === 0 && <Image src="/shared/icon-category-grid.svg" alt="" width={16} height={16} />}
-                  {category}
+                  {categoryLabel}
                 </button>
               ))}
             </div>
@@ -64,32 +108,40 @@ export default function BusinessDirectoryPage() {
             <div className={styles.selectFilters}>
               <label>
                 <span className={styles.visuallyHidden}>Category</span>
-                <select name="category" defaultValue="all">
-                  <option value="all">All Categories</option>
+                <select aria-label="Category" name="category" onChange={(event) => chooseCategory(event.target.value)} value={category}>
+                  {categoryFilters.filter((item, index) => categoryFilters.indexOf(item) === index).map((item) => <option key={item}>{item}</option>)}
                 </select>
               </label>
               <label>
                 <span className={styles.visuallyHidden}>Location type</span>
-                <select name="location" defaultValue="all">
+                <select name="location" onChange={(event) => { setLocation(event.target.value); setVisibleCount(4); }} value={location}>
                   <option value="all">Location Type</option>
+                  <option value="Islamabad">Islamabad, PK</option>
+                  <option value="Toronto">Toronto, CA</option>
                 </select>
               </label>
               <label>
                 <span className={styles.visuallyHidden}>Pricing range</span>
-                <select name="pricing" defaultValue="all">
+                <select name="pricing" onChange={(event) => setPricing(event.target.value)} value={pricing}>
                   <option value="all">Pricing Range</option>
+                  <option value="budget">Budget Friendly</option>
+                  <option value="premium">Premium</option>
                 </select>
               </label>
               <label>
                 <span className={styles.visuallyHidden}>Listing type</span>
-                <select name="featured" defaultValue="all">
+                <select name="featured" onChange={(event) => setFeatured(event.target.value)} value={featured}>
                   <option value="all">Featured Listing</option>
+                  <option value="featured">Featured</option>
+                  <option value="standard">Standard</option>
                 </select>
               </label>
               <label>
                 <span className={styles.visuallyHidden}>Sort businesses</span>
-                <select name="sort" defaultValue="recommended">
-                  <option value="recommended">Sort By</option>
+                <select name="sort" onChange={(event) => setSort(event.target.value)} value={sort}>
+                  <option value="recommended">Recommended</option>
+                  <option value="rating">Highest Rated</option>
+                  <option value="name">Name A–Z</option>
                 </select>
               </label>
             </div>
@@ -119,7 +171,7 @@ export default function BusinessDirectoryPage() {
           <section className={styles.businessSection} aria-labelledby="all-businesses">
             <h2 id="all-businesses">All Businesses</h2>
             <div className={styles.businessGrid}>
-              {businessListings.map((business) => (
+              {filteredBusinesses.slice(0, visibleCount).map((business) => (
                 <article className={styles.businessCard} key={business.id}>
                   <div className={styles.businessSummary}>
                     <div className={styles.businessImage}>
@@ -137,15 +189,20 @@ export default function BusinessDirectoryPage() {
                     </div>
                   </div>
                   <div className={styles.businessActions}>
-                    <Link href="/portal/directory/nour-hamza-bakery">View Profile</Link>
-                    <a href={business.website}>Visit Website</a>
+                    <Link href={`/portal/directory/${business.id}`}>View Profile</Link>
+                    {business.website === "#" ? (
+                      <FeedbackButton feedback={`Website for ${business.name} will open here once connected.`} type="button">Visit Website</FeedbackButton>
+                    ) : <a href={business.website}>Visit Website</a>}
                   </div>
                 </article>
               ))}
             </div>
-            <button className={styles.loadMore} type="button">
-              Load More Businesses <span aria-hidden="true">⌄</span>
-            </button>
+            {!filteredBusinesses.length && <p className={styles.emptyResults}>No businesses match these filters. Try another category or location.</p>}
+            {visibleCount < filteredBusinesses.length && (
+              <button className={styles.loadMore} onClick={() => setVisibleCount((current) => current + 2)} type="button">
+                Load More Businesses <span aria-hidden="true">⌄</span>
+              </button>
+            )}
           </section>
         </div>
 
@@ -176,7 +233,7 @@ export default function BusinessDirectoryPage() {
           <section className={styles.sidebarCard}>
             <h2><Image src="/directory/icon-city.svg" alt="" width={18} height={22} /> Explore By City</h2>
             <div className={styles.cityGrid}>
-              {cities.map((city) => <button key={city} type="button">{city}</button>)}
+              {cities.map((city) => <button aria-pressed={location === city} key={city} onClick={() => { setLocation(city); setVisibleCount(4); document.getElementById("all-businesses")?.scrollIntoView({ behavior: "smooth" }); }} type="button">{city}</button>)}
             </div>
             <a href="#all-businesses">View all cities</a>
           </section>

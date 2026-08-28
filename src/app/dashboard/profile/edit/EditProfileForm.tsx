@@ -18,6 +18,7 @@ export default function EditProfileForm() {
   const [preview, setPreview] = useState("/dashboard/messages/fatima-khan.png");
   const [businessType, setBusinessType] = useState("Service Based");
   const [faithAlignment, setFaithAlignment] = useState(["Faith-Centered", "Women-Led", "Modest & Ethical", "Community Focused"]);
+  const [additionalSocials, setAdditionalSocials] = useState<string[]>([]);
   const [saved, setSaved] = useState(false);
 
   useEffect(() => () => {
@@ -87,9 +88,10 @@ export default function EditProfileForm() {
             </label>
             <Field label="Website (Optional)" defaultValue="www.saraboutique.com" />
             <label className={styles.field}>
-              <span className={styles.socialLabel}>Instagram (Optional) <button type="button">Add more socials</button></span>
+              <span className={styles.socialLabel}>Instagram (Optional) <button disabled={additionalSocials.length === 3} onClick={() => setAdditionalSocials((current) => [...current, ["Facebook", "LinkedIn", "TikTok"][current.length]])} type="button">{additionalSocials.length === 3 ? "All socials added" : "Add more socials"}</button></span>
               <input defaultValue="@saraboutique" />
             </label>
+            {additionalSocials.map((network) => <Field defaultValue="" key={network} label={`${network} (Optional)`} />)}
 
             <fieldset className={styles.chipFieldset}>
               <legend>What best describes your business?</legend>

@@ -198,3 +198,24 @@ export const businessProfiles: Record<string, BusinessProfile> = {
     ],
   },
 };
+
+for (const business of [...featuredBusinesses.slice(1), ...businessListings]) {
+  if (businessProfiles[business.id]) continue;
+  businessProfiles[business.id] = {
+    ...businessProfiles["nour-hamza-bakery"],
+    id: business.id,
+    name: business.name,
+    category: business.category,
+    avatar: "avatar" in business ? business.avatar : business.image,
+    description: "description" in business ? business.description : `Discover ${business.name}, a women-owned business serving the Nothing But Beauty community.`,
+  };
+}
+
+businessProfiles["hijab-beautique"] = {
+  ...businessProfiles["nour-hamza-bakery"],
+  id: "hijab-beautique",
+  name: "Hijab Beautique",
+  category: "Modest Fashion",
+  avatar: "/dashboard/messages/fatima-khan.png",
+  description: "A women-led modest fashion boutique offering thoughtfully selected styles for everyday confidence.",
+};

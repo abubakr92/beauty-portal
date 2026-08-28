@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: "Talk with Zehra, your faith-rooted companion.",
 };
 
-export default function ZehraChatPage() {
-  return <ZehraChat />;
+export default async function ZehraChatPage({ searchParams }: { searchParams: Promise<{ message?: string }> }) {
+  const { message } = await searchParams;
+  return <ZehraChat initialMessage={message} />;
 }

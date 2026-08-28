@@ -11,6 +11,7 @@ type ArchiveSubmissionFormProps = {
 
 export default function ArchiveSubmissionForm({ children, className }: ArchiveSubmissionFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [draftStatus, setDraftStatus] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const titleId = useId();
@@ -53,8 +54,19 @@ export default function ArchiveSubmissionForm({ children, className }: ArchiveSu
         event.preventDefault();
         setSubmitted(true);
       }}
+      onClick={(event) => {
+        const target = event.target as HTMLElement;
+        if (!target.closest("[data-save-archive-draft]")) return;
+        event.preventDefault();
+        const data = Object.fromEntries(new FormData(formRef.current ?? undefined).entries());
+        window.sessionStorage.setItem("nbb-archive-draft", JSON.stringify(data));
+        setDraftStatus("Archive draft saved for this browser session.");
+        window.setTimeout(() => setDraftStatus(""), 2500);
+      }}
     >
       {children}
+
+      {draftStatus && <span className={styles.draftStatus} role="status">{draftStatus}</span>}
 
       {submitted && (
         <div className={styles.successBackdrop}>

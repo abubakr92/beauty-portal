@@ -25,7 +25,7 @@ export default function SignupAccountPage() {
 
           <label className={styles.agreement}>
             <input name="termsAccepted" type="checkbox" required />
-            <span>I agree to the <Link href="#terms">Terms of Service</Link> and <Link href="#privacy">Privacy Policy</Link></span>
+            <span>I agree to the <Link href="/portal/home#about">Terms of Service</Link> and <Link href="/portal/home#about">Privacy Policy</Link></span>
           </label>
 
           <PrimaryButton>Continue</PrimaryButton>

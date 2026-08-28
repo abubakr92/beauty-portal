@@ -29,10 +29,16 @@ function ReadReceipt() {
   );
 }
 
-export default function ZehraChat() {
-  const [messages, setMessages] = useState<ChatMessage[]>(() =>
-    conversation.map((entry) => ({ ...entry, id: String(entry.id) })),
-  );
+export default function ZehraChat({ initialMessage }: { initialMessage?: string }) {
+  const [messages, setMessages] = useState<ChatMessage[]>(() => {
+    const initialConversation = conversation.map((entry) => ({ ...entry, id: String(entry.id) }));
+    if (!initialMessage?.trim()) return initialConversation;
+    return [
+      ...initialConversation,
+      { id: "initial-question", role: "user", message: initialMessage, time: "Now" },
+      { id: "initial-answer", role: "assistant", message: zehraReplies[0], time: "Now" },
+    ];
+  });
   const [isReplying, setIsReplying] = useState(false);
   const conversationRef = useRef<HTMLElement>(null);
   const replyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);

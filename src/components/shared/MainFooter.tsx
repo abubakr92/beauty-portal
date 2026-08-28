@@ -22,18 +22,18 @@ export default function MainFooter() {
 
         <div>
           <h2>Company</h2>
-          <Link href="#about">About Us</Link>
-          <Link href="#mission">Our Mission</Link>
-          <Link href="#careers">Careers</Link>
-          <Link href="#contact">Contact Us</Link>
+          <Link href="/portal/home#about">About Us</Link>
+          <Link href="/portal/home#about">Our Mission</Link>
+          <a href="mailto:hello@nothingbutbeautyportal.com?subject=Careers">Careers</a>
+          <a href="mailto:hello@nothingbutbeautyportal.com">Contact Us</a>
         </div>
 
         <div>
           <h2>Support</h2>
-          <Link href="#help">Help Center</Link>
-          <Link href="#guidelines">Community Guidelines</Link>
-          <Link href="#privacy">Privacy Policy</Link>
-          <Link href="#terms">Terms of Service</Link>
+          <Link href="/portal/resources">Help Center</Link>
+          <Link href="/portal/sanctuary#community-guidelines">Community Guidelines</Link>
+          <Link href="/portal/home#about">Privacy Policy</Link>
+          <Link href="/portal/home#about">Terms of Service</Link>
         </div>
 
         <div className={styles.reminder}>

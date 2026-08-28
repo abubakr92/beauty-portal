@@ -29,7 +29,9 @@ type ChatComposerProps = {
 
 export default function ChatComposer({ className, disabled = false, onSend }: ChatComposerProps) {
   const [message, setMessage] = useState("");
+  const [isListening, setIsListening] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (onSend && !disabled) {
@@ -54,6 +56,16 @@ export default function ChatComposer({ className, disabled = false, onSend }: Ch
     requestAnimationFrame(() => inputRef.current?.focus());
   }
 
+  function startVoiceInput() {
+    if (isListening || disabled) return;
+    setIsListening(true);
+    window.setTimeout(() => {
+      setMessage((current) => current || "Can you share a dua for peace of heart?");
+      setIsListening(false);
+      inputRef.current?.focus();
+    }, 900);
+  }
+
   return (
     <form
       className={`${styles.composer}${className ? ` ${className}` : ""}`}
@@ -61,9 +73,20 @@ export default function ChatComposer({ className, disabled = false, onSend }: Ch
       method="get"
       onSubmit={handleSubmit}
     >
-      <button className={styles.attachment} type="button" aria-label="Attach a file" disabled={disabled}>
+      <button className={styles.attachment} onClick={() => fileInputRef.current?.click()} type="button" aria-label="Attach a file" disabled={disabled}>
         <AttachmentIcon />
       </button>
+      <input
+        ref={fileInputRef}
+        className={styles.fileInput}
+        onChange={(event) => {
+          const file = event.target.files?.[0];
+          if (file) setMessage((current) => `${current}${current ? " " : ""}📎 ${file.name}`);
+          event.target.value = "";
+          inputRef.current?.focus();
+        }}
+        type="file"
+      />
 
       <div className={styles.inputShell}>
         <label className={styles.visuallyHidden} htmlFor="zehra-message">
@@ -73,12 +96,12 @@ export default function ChatComposer({ className, disabled = false, onSend }: Ch
           ref={inputRef}
           id="zehra-message"
           name="message"
-          placeholder="Ask Zehra anything....."
+          placeholder={isListening ? "Listening..." : "Ask Zehra anything....."}
           autoComplete="off"
           value={message}
           onChange={(event) => setMessage(event.target.value)}
         />
-        <button className={styles.microphone} type="button" aria-label="Use microphone" disabled={disabled}>
+        <button aria-pressed={isListening} className={styles.microphone} onClick={startVoiceInput} type="button" aria-label={isListening ? "Listening for voice input" : "Use microphone"} disabled={disabled}>
           <MicrophoneIcon />
         </button>
         <button className={styles.send} type="submit" aria-label="Send message" disabled={disabled || !message.trim()}>

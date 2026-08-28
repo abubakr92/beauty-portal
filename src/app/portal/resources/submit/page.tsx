@@ -73,7 +73,7 @@ export default function SubmitArchivePage() {
 
             <label>Description<textarea name="description" placeholder="Briefly describe the content of this resource" /></label>
 
-            <label className={styles.dateField}>Date<span><input name="date" placeholder="Select date" type="text" /><Image src="/resources/calendar.svg" alt="" width={20} height={20} /></span></label>
+            <label className={styles.dateField}>Date<span><input name="date" type="date" /><Image src="/resources/calendar.svg" alt="" width={20} height={20} /></span></label>
 
             <fieldset className={styles.storageTypes}>
               <legend>External Storage Type</legend>
@@ -104,7 +104,7 @@ export default function SubmitArchivePage() {
                 <span>I confirm that I have the right to share this content and grant <strong>Nothing But Beauty Portal</strong> permission to list and display this in the archive with the provided link.</span>
               </label>
               <button type="submit">Submit Archive</button>
-              <button className={styles.draftButton} type="button"><Image src="/shared/icon-save-draft.svg" alt="" width={15} height={15} />Save Draft</button>
+              <button className={styles.draftButton} data-save-archive-draft type="button"><Image src="/shared/icon-save-draft.svg" alt="" width={15} height={15} />Save Draft</button>
             </section>
           </aside>
         </ArchiveSubmissionForm>

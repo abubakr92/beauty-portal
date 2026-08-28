@@ -222,6 +222,13 @@
   cursor: pointer;
 }
 
+.registrationCard .actionStatus {
+  margin: 11px 0 0;
+  color: #315347;
+  font-size: 13px;
+  text-align: center;
+}
+
 .priceCard {
   display: flex;
   align-items: center;

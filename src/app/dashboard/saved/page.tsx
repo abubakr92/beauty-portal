@@ -11,20 +11,23 @@ type SavedItem = {
   tier: "gold" | "emerald";
   name: string;
   image: string;
+  daysAgo: number;
 };
 
 const initialItems: SavedItem[] = [
-  { id: 1, tier: "gold", name: "Zahra Beauty Studio", image: "/dashboard/saved/product-gold.png" },
-  { id: 2, tier: "emerald", name: "Mindful Moments", image: "/dashboard/gallery/image-2.png" },
-  { id: 3, tier: "emerald", name: "Mindful Moments", image: "/dashboard/gallery/image-5.png" },
-  { id: 4, tier: "gold", name: "Zahra Beauty Studio", image: "/dashboard/saved/product-gold.png" },
-  { id: 5, tier: "gold", name: "Zahra Beauty Studio", image: "/dashboard/saved/product-gold.png" },
-  { id: 6, tier: "gold", name: "Zahra Beauty Studio", image: "/dashboard/saved/product-gold.png" },
-  { id: 7, tier: "emerald", name: "Mindful Moments", image: "/dashboard/gallery/image-8.png" },
+  { id: 1, tier: "gold", name: "Zahra Beauty Studio", image: "/dashboard/saved/product-gold.png", daysAgo: 1 },
+  { id: 2, tier: "emerald", name: "Mindful Moments", image: "/dashboard/gallery/image-2.png", daysAgo: 3 },
+  { id: 3, tier: "emerald", name: "Mindful Moments", image: "/dashboard/gallery/image-5.png", daysAgo: 7 },
+  { id: 4, tier: "gold", name: "Zahra Beauty Studio", image: "/dashboard/saved/product-gold.png", daysAgo: 12 },
+  { id: 5, tier: "gold", name: "Zahra Beauty Studio", image: "/dashboard/saved/product-gold.png", daysAgo: 28 },
+  { id: 6, tier: "gold", name: "Zahra Beauty Studio", image: "/dashboard/saved/product-gold.png", daysAgo: 48 },
+  { id: 7, tier: "emerald", name: "Mindful Moments", image: "/dashboard/gallery/image-8.png", daysAgo: 90 },
 ];
 
 export default function SavedItemsPage() {
   const [items, setItems] = useState(initialItems);
+  const [period, setPeriod] = useState("30");
+  const visibleItems = period === "all" ? items : items.filter((item) => item.daysAgo <= Number(period));
 
   return (
     <main className={`${dashboardStyles.standardPage} ${styles.savedPage}`}>
@@ -33,7 +36,7 @@ export default function SavedItemsPage() {
           <BackLink />
           <h1 className={dashboardStyles.pageTitle}>Saved Items</h1>
         </div>
-        <select className={dashboardStyles.periodSelect} aria-label="Saved items date range" defaultValue="30">
+        <select className={dashboardStyles.periodSelect} aria-label="Saved items date range" onChange={(event) => setPeriod(event.target.value)} value={period}>
           <option value="7">Last 7 Days</option>
           <option value="30">Last 30 Days</option>
           <option value="all">All Time</option>
@@ -41,7 +44,7 @@ export default function SavedItemsPage() {
       </div>
 
       <section className={styles.savedGrid} aria-label="Saved businesses">
-        {items.map((item) => (
+        {visibleItems.map((item) => (
           <article key={item.id}>
             <div className={styles.cardImage}>
               <Image src={item.image} alt="" width={570} height={360} />
@@ -59,7 +62,7 @@ export default function SavedItemsPage() {
             </div>
           </article>
         ))}
-        {!items.length && <p className={styles.empty}>You have no saved businesses yet.</p>}
+        {!visibleItems.length && <p className={styles.empty}>You have no saved businesses in this date range.</p>}
       </section>
     </main>
   );

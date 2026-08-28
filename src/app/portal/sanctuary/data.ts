@@ -9,7 +9,9 @@ export type SanctuaryPost = {
   author: string;
   avatar: string;
   age: string;
+  daysAgo: number;
   category: string;
+  categorySlug: string;
   title: string;
   excerpt: string;
   image: string;
@@ -68,7 +70,9 @@ export const sanctuaryPosts: SanctuaryPost[] = [
     author: "Sister Noor",
     avatar: "/sanctuary/avatar-sister-noor.png",
     age: "4 hours ago",
+    daysAgo: 0,
     category: "Faith & Reflections",
+    categorySlug: "faith-wellness",
     title: "How do I strengthen my connection with Allah during busy days?",
     excerpt:
       "Some days feel so full of responsibilities that I struggle to find time for myself and my Deen. What are some ways you all stay connected?",
@@ -81,8 +85,10 @@ export const sanctuaryPosts: SanctuaryPost[] = [
     id: "books-that-changed-you",
     author: "Sister Noor",
     avatar: "/sanctuary/avatar-sister-hana.png",
-    age: "4 hours ago",
+    age: "3 days ago",
+    daysAgo: 3,
     category: "Faith & Reflections",
+    categorySlug: "personal-growth",
     title: "Books that changed your perspective",
     excerpt:
       "Share a book that helped you grow, heal, or see life differently. Always looking for meaningful reads!",
@@ -95,8 +101,10 @@ export const sanctuaryPosts: SanctuaryPost[] = [
     id: "peaceful-mornings",
     author: "Sister Noor",
     avatar: "/shared/avatar-sister-amina.png",
-    age: "4 hours ago",
-    category: "Faith & Reflections",
+    age: "2 weeks ago",
+    daysAgo: 14,
+    category: "Motherhood",
+    categorySlug: "motherhood",
     title: "Tips for peaceful mornings with little ones?",
     excerpt: "Mornings in our house can get a bit chaotic. What are your favorite routines or tips?",
     image: "/sanctuary/post-morning.png",

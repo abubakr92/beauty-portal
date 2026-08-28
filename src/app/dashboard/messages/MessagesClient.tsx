@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FormEvent, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useMemo, useRef, useState } from "react";
 import styles from "./page.module.css";
 
 type Contact = {
@@ -45,18 +45,49 @@ export default function MessagesClient() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [chats, setChats] = useState(initialChats);
   const [draft, setDraft] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [notice, setNotice] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesRef = useRef<HTMLDivElement>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const activeContact = contacts[activeIndex];
   const messages = chats[activeIndex];
+  const visibleMessages = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    return query ? messages.filter((message) => message.text.toLowerCase().includes(query)) : messages;
+  }, [messages, searchQuery]);
 
   function selectContact(index: number) {
     setActiveIndex(index);
     setDraft("");
+    setSearchQuery("");
+    setSearchOpen(false);
+    setMoreOpen(false);
+    setNotice(`Conversation changed to ${contacts[index].name}`);
     requestAnimationFrame(() => {
       if (messagesRef.current) messagesRef.current.scrollTop = 0;
       inputRef.current?.focus();
     });
+  }
+
+  function showNotice(message: string) {
+    setNotice(message);
+    window.setTimeout(() => setNotice((current) => current === message ? "" : current), 2400);
+  }
+
+  function addAttachment(event: ChangeEvent<HTMLInputElement>, kind: "Image" | "File") {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    setChats((current) => ({
+      ...current,
+      [activeIndex]: [...current[activeIndex], { id: Date.now(), text: `${kind === "Image" ? "🖼️" : "📎"} ${file.name}`, side: "outgoing" }],
+    }));
+    event.target.value = "";
+    showNotice(`${kind} attached to the conversation`);
+    requestAnimationFrame(() => inputRef.current?.focus());
   }
 
   function sendMessage(event: FormEvent<HTMLFormElement>) {
@@ -103,31 +134,46 @@ export default function MessagesClient() {
             <i aria-label="Online" />
           </div>
           <nav aria-label="Conversation actions">
-            <button type="button" aria-label="Search conversation"><Image src="/dashboard/messages/search.svg" alt="" width={24} height={24} /></button>
-            <button type="button" aria-label="Start audio call"><Image src="/dashboard/messages/call.svg" alt="" width={24} height={24} /></button>
-            <button type="button" aria-label="Start video call"><Image src="/dashboard/messages/video.svg" alt="" width={24} height={24} /></button>
-            <button type="button" aria-label="More actions"><Image src="/dashboard/messages/more.svg" alt="" width={24} height={24} /></button>
+            <button aria-pressed={searchOpen} onClick={() => { setSearchOpen((current) => !current); setMoreOpen(false); }} type="button" aria-label="Search conversation"><Image src="/dashboard/messages/search.svg" alt="" width={24} height={24} /></button>
+            <button onClick={() => showNotice(`Calling ${activeContact.name}...`)} type="button" aria-label="Start audio call"><Image src="/dashboard/messages/call.svg" alt="" width={24} height={24} /></button>
+            <button onClick={() => showNotice(`Starting video call with ${activeContact.name}...`)} type="button" aria-label="Start video call"><Image src="/dashboard/messages/video.svg" alt="" width={24} height={24} /></button>
+            <button aria-expanded={moreOpen} onClick={() => setMoreOpen((current) => !current)} type="button" aria-label="More actions"><Image src="/dashboard/messages/more.svg" alt="" width={24} height={24} /></button>
+            {moreOpen && (
+              <div className={styles.moreMenu}>
+                <button onClick={() => { showNotice("Conversation marked as unread"); setMoreOpen(false); }} type="button">Mark as unread</button>
+                <button onClick={() => { setChats((current) => ({ ...current, [activeIndex]: [] })); setMoreOpen(false); }} type="button">Clear conversation</button>
+              </div>
+            )}
           </nav>
         </header>
 
         <div className={styles.messages} aria-live="polite" ref={messagesRef}>
+          {notice && <p className={styles.chatNotice} role="status">{notice}</p>}
+          {searchOpen && (
+            <label className={styles.messageSearch}>
+              <span>Search this conversation</span>
+              <input autoFocus value={searchQuery} onChange={(event) => setSearchQuery(event.target.value)} placeholder="Type a word or phrase..." type="search" />
+            </label>
+          )}
           <time>02 January 2024 - 04:56 PM</time>
-          {messages.length ? messages.map((message) => (
+          {visibleMessages.length ? visibleMessages.map((message) => (
             <div className={styles[message.side]} key={message.id}>
               {message.side === "incoming" && <Image src={activeContact.image} alt="" width={48} height={48} />}
               <p>{message.text}</p>
             </div>
           )) : (
-            <p className={styles.emptyChat}>Start a conversation with {activeContact.name}.</p>
+            <p className={styles.emptyChat}>{searchQuery ? "No messages match your search." : `Start a conversation with ${activeContact.name}.`}</p>
           )}
         </div>
 
         <form className={styles.composer} onSubmit={sendMessage}>
-          <button type="button" aria-label="Add emoji"><Image src="/dashboard/messages/emoji.svg" alt="" width={24} height={24} /></button>
-          <button type="button" aria-label="Add image"><Image src="/dashboard/messages/gallery.svg" alt="" width={24} height={24} /></button>
-          <button type="button" aria-label="Attach file"><Image src="/dashboard/messages/attachment.svg" alt="" width={24} height={24} /></button>
+          <button onClick={() => { setDraft((current) => `${current}🌸`); inputRef.current?.focus(); }} type="button" aria-label="Add emoji"><Image src="/dashboard/messages/emoji.svg" alt="" width={24} height={24} /></button>
+          <button onClick={() => imageInputRef.current?.click()} type="button" aria-label="Add image"><Image src="/dashboard/messages/gallery.svg" alt="" width={24} height={24} /></button>
+          <button onClick={() => fileInputRef.current?.click()} type="button" aria-label="Attach file"><Image src="/dashboard/messages/attachment.svg" alt="" width={24} height={24} /></button>
           <input ref={inputRef} value={draft} onChange={(event) => setDraft(event.target.value)} placeholder="Send Your Message ..." aria-label="Message" />
           <button type="submit" aria-label="Send message"><Image src="/dashboard/messages/send.svg" alt="" width={24} height={24} /></button>
+          <input ref={imageInputRef} className={styles.hiddenInput} accept="image/*" onChange={(event) => addAttachment(event, "Image")} type="file" />
+          <input ref={fileInputRef} className={styles.hiddenInput} onChange={(event) => addAttachment(event, "File")} type="file" />
         </form>
       </section>
     </div>

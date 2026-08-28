@@ -133,7 +133,11 @@
 .textLink {
   display: block;
   margin: 12px 3px 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
   color: #6d5635;
+  cursor: pointer;
   font-family: var(--font-display), Georgia, serif;
   font-size: 17px;
   font-weight: 600;

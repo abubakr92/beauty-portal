@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import SanctuarySidebar from "../_components/SanctuarySidebar";
 import { postTags, sanctuaryCategories } from "../data";
+import AnonymousIdentity from "./AnonymousIdentity";
 import PublishPostForm from "./PublishPostForm";
 import styles from "./page.module.css";
 
@@ -72,24 +73,7 @@ export default function NewSanctuaryPostPage() {
               </div>
             </fieldset>
 
-            <section className={styles.identityCard} aria-labelledby="anonymous-heading">
-              <div className={styles.identityHeader}>
-                <Image src="/sanctuary/anonymous-avatar.png" alt="" width={42} height={42} />
-                <div>
-                  <h2 id="anonymous-heading">Sister_Rose_42</h2>
-                  <p>Your anonymous handle</p>
-                </div>
-                <button type="button" aria-label="Generate a new anonymous handle">
-                  <span aria-hidden="true">↻</span>
-                  Regenerate
-                </button>
-              </div>
-              <label className={styles.toggleRow}>
-                <span>Post anonymously</span>
-                <input type="checkbox" name="anonymous" value="true" defaultChecked />
-                <i aria-hidden="true" />
-              </label>
-            </section>
+            <AnonymousIdentity />
 
             <aside className={styles.reminder} aria-label="Community guidelines reminder">
               <strong>

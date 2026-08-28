@@ -117,6 +117,7 @@
 }
 
 .chatHeader nav {
+  position: relative;
   display: flex;
   gap: 8px;
 }
@@ -132,6 +133,38 @@
   cursor: pointer;
 }
 
+.chatHeader button[aria-pressed="true"],
+.chatHeader button[aria-expanded="true"] {
+  background: #efe4d3;
+}
+
+.chatHeader .moreMenu {
+  position: absolute;
+  z-index: 5;
+  top: 52px;
+  right: 0;
+  width: 175px;
+  overflow: hidden;
+  display: grid;
+  border: 1px solid #e3d6c3;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 14px 30px rgba(26, 39, 33, 0.16);
+}
+
+.chatHeader .moreMenu button {
+  width: 100%;
+  height: auto;
+  padding: 12px 14px;
+  display: block;
+  border-radius: 0;
+  background: #fff;
+  color: #32483f;
+  text-align: left;
+}
+
+.chatHeader .moreMenu button:hover { background: #f7f0e6; }
+
 .messages {
   display: flex;
   min-height: 0;
@@ -146,6 +179,35 @@
   margin-bottom: 2px;
   color: #6e6e6e;
   font-size: 17px;
+}
+
+.chatNotice {
+  position: sticky;
+  z-index: 2;
+  top: 0;
+  align-self: center;
+  margin: 0;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: #0b4336;
+  color: #f4dfbd;
+  font-size: 12px;
+}
+
+.messageSearch {
+  display: grid;
+  gap: 6px;
+  color: #6b756f;
+  font-size: 12px;
+}
+
+.messageSearch input {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid #e1d5c4;
+  border-radius: 10px;
+  background: #fff;
+  outline: 0;
 }
 
 .incoming,
@@ -215,6 +277,8 @@
   color: #555;
 }
 
+.composer .hiddenInput { display: none; }
+
 @media (max-width: 900px) {
   .messagesPage {
     display: block;
@@ -260,6 +324,12 @@
     display: grid;
     width: 42px;
     height: 42px;
+  }
+
+  .chatHeader nav .moreMenu button {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .messages {

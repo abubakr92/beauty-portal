@@ -103,7 +103,8 @@
   display: none;
 }
 
-.categoryNav a {
+.categoryNav a,
+.categoryNav button {
   display: inline-flex;
   min-height: 44px;
   flex: 1 0 auto;
@@ -117,9 +118,15 @@
   font-size: 15px;
   font-weight: 500;
   white-space: nowrap;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
-.categoryNav a:last-child {
+.categoryNav a:last-child,
+.categoryNav button:last-child {
   border-right: 0;
 }
 
@@ -274,6 +281,33 @@
   background: #1b150d;
 }
 
+.moreControl { position: relative; }
+
+.postMenu {
+  position: absolute;
+  z-index: 10;
+  top: 28px;
+  right: 0;
+  width: 145px;
+  overflow: hidden;
+  display: grid;
+  border: 1px solid #dfcfb7;
+  border-radius: 9px;
+  background: #fffaf3;
+  box-shadow: 0 12px 28px rgba(45, 33, 16, 0.16);
+}
+
+.postMenu button {
+  padding: 10px 12px;
+  border: 0;
+  background: transparent;
+  color: #59472f;
+  cursor: pointer;
+  text-align: left;
+}
+
+.postMenu button:hover { background: #f1e4d1; }
+
 .filters {
   display: flex;
   gap: 10px;
@@ -363,10 +397,30 @@
   font-size: 13px;
 }
 
-.engagementRow span {
+.engagementRow span,
+.engagementRow button {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+}
+
+.engagementRow button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.engagementRow button[aria-pressed="true"] { color: #a9783b; }
+
+.emptyPosts {
+  margin: 0;
+  padding: 32px;
+  border: 1px dashed rgba(179, 138, 83, 0.35);
+  border-radius: 16px;
+  color: #776e62;
+  text-align: center;
 }
 
 .engagementRow i {
@@ -475,7 +529,7 @@
     gap: 11px;
   }
 
-  .pinnedPost > .moreButton {
+  .pinnedPost > .moreControl {
     display: none;
   }
 
@@ -498,7 +552,7 @@
     padding: 17px 13px;
   }
 
-  .discussionCard > .moreButton {
+  .discussionCard > .moreControl {
     grid-column: 3;
     grid-row: 1;
   }

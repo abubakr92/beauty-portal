@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
 import SanctuarySidebar from "./_components/SanctuarySidebar";
 import { pinnedPosts, sanctuaryCategories, sanctuaryPosts } from "./data";
 import styles from "./page.module.css";
-
-export const metadata: Metadata = {
-  title: "Sanctuary | Nothing But Beauty",
-  description: "A private, faith-focused space for Muslim women to connect, share, learn, and grow.",
-};
 
 type EngagementIconProps = {
   kind: "heart" | "comment" | "bookmark";
@@ -38,17 +35,59 @@ function EngagementIcon({ kind }: EngagementIconProps) {
   );
 }
 
-function MoreButton() {
+function MoreButton({ open, onCopy, onToggle }: { open: boolean; onCopy: () => void; onToggle: () => void }) {
   return (
-    <button className={styles.moreButton} type="button" aria-label="More post options">
-      <span />
-      <span />
-      <span />
-    </button>
+    <div className={styles.moreControl}>
+      <button aria-expanded={open} className={styles.moreButton} onClick={onToggle} type="button" aria-label="More post options">
+        <span />
+        <span />
+        <span />
+      </button>
+      {open && <div className={styles.postMenu}><button onClick={onCopy} type="button">Copy post link</button><button onClick={onToggle} type="button">Report post</button></div>}
+    </div>
   );
 }
 
 export default function SanctuaryPage() {
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [sort, setSort] = useState("latest");
+  const [period, setPeriod] = useState("all-time");
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [engagement, setEngagement] = useState(() => Object.fromEntries(sanctuaryPosts.map((post) => [post.id, { likes: post.likes, comments: post.comments, bookmarks: post.bookmarks, liked: false, saved: false }])));
+
+  useEffect(() => {
+    function showTrending() {
+      setActiveCategory("all");
+      setSort("popular");
+      document.querySelector(`.${styles.filters}`)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    window.addEventListener("sanctuary:trending", showTrending);
+    return () => window.removeEventListener("sanctuary:trending", showTrending);
+  }, []);
+
+  const visiblePosts = useMemo(() => {
+    const categoryPosts = activeCategory === "all" ? sanctuaryPosts : sanctuaryPosts.filter((post) => post.categorySlug === activeCategory);
+    const periodLimit = period === "today" ? 0 : period === "week" ? 7 : period === "month" ? 30 : Number.POSITIVE_INFINITY;
+    const filtered = categoryPosts.filter((post) => post.daysAgo <= periodLimit);
+    if (sort === "popular") return [...filtered].sort((first, second) => engagement[second.id].likes - engagement[first.id].likes);
+    if (sort === "discussed") return [...filtered].sort((first, second) => engagement[second.id].comments - engagement[first.id].comments);
+    return filtered;
+  }, [activeCategory, engagement, period, sort]);
+
+  function updateEngagement(postId: string, kind: "like" | "comment" | "bookmark") {
+    setEngagement((current) => {
+      const item = current[postId];
+      if (kind === "comment") return { ...current, [postId]: { ...item, comments: item.comments + 1 } };
+      if (kind === "like") return { ...current, [postId]: { ...item, liked: !item.liked, likes: item.likes + (item.liked ? -1 : 1) } };
+      return { ...current, [postId]: { ...item, saved: !item.saved, bookmarks: item.bookmarks + (item.saved ? -1 : 1) } };
+    });
+  }
+
+  function copyPostLink(postId: string) {
+    void navigator.clipboard?.writeText(`${window.location.origin}/portal/sanctuary#${postId}`);
+    setOpenMenu(null);
+  }
+
   return (
     <main className={styles.page}>
       <div className={styles.shell}>
@@ -75,15 +114,17 @@ export default function SanctuaryPage() {
         <div className={styles.contentGrid}>
           <section className={styles.feedColumn} aria-label="Sanctuary discussions">
             <nav className={styles.categoryNav} aria-label="Discussion categories">
-              {sanctuaryCategories.map((category, index) => (
-                <Link
-                  className={index === 0 ? styles.activeCategory : undefined}
-                  href={index === 0 ? "/portal/sanctuary" : `/portal/sanctuary?category=${category.slug}`}
+              {sanctuaryCategories.map((category) => (
+                <button
+                  aria-pressed={activeCategory === category.slug}
+                  className={activeCategory === category.slug ? styles.activeCategory : undefined}
+                  onClick={() => setActiveCategory(category.slug)}
+                  type="button"
                   key={category.slug}
                 >
                   <Image src={category.icon} alt="" width={20} height={20} />
                   <span>{category.label}</span>
-                </Link>
+                </button>
               ))}
             </nav>
 
@@ -112,7 +153,7 @@ export default function SanctuaryPage() {
                       </div>
                     </div>
                     <Image className={styles.pinIcon} src="/sanctuary/pin.svg" alt="Pinned post" width={23} height={23} />
-                    <MoreButton />
+                    <MoreButton open={openMenu === post.id} onCopy={() => copyPostLink(post.id)} onToggle={() => setOpenMenu((current) => current === post.id ? null : post.id)} />
                   </article>
                 ))}
               </div>
@@ -121,7 +162,7 @@ export default function SanctuaryPage() {
             <form className={styles.filters} aria-label="Filter discussions">
               <label>
                 <span className={styles.srOnly}>Sort discussions</span>
-                <select name="sort" defaultValue="latest">
+                <select name="sort" onChange={(event) => setSort(event.target.value)} value={sort}>
                   <option value="latest">Latest</option>
                   <option value="popular">Most Popular</option>
                   <option value="discussed">Most Discussed</option>
@@ -129,7 +170,7 @@ export default function SanctuaryPage() {
               </label>
               <label>
                 <span className={styles.srOnly}>Filter by category</span>
-                <select name="category" defaultValue="all">
+                <select name="category" onChange={(event) => setActiveCategory(event.target.value)} value={activeCategory}>
                   <option value="all">All Categories</option>
                   {sanctuaryCategories.slice(1).map((category) => (
                     <option key={category.slug} value={category.slug}>
@@ -140,7 +181,7 @@ export default function SanctuaryPage() {
               </label>
               <label>
                 <span className={styles.srOnly}>Filter by time</span>
-                <select name="period" defaultValue="all-time">
+                <select name="period" onChange={(event) => setPeriod(event.target.value)} value={period}>
                   <option value="all-time">All Time</option>
                   <option value="today">Today</option>
                   <option value="week">This Week</option>
@@ -150,8 +191,8 @@ export default function SanctuaryPage() {
             </form>
 
             <div className={styles.postList}>
-              {sanctuaryPosts.map((post) => (
-                <article className={styles.discussionCard} key={post.id}>
+              {visiblePosts.map((post) => (
+                <article className={styles.discussionCard} id={post.id} key={post.id} data-period={period}>
                   <Image className={styles.postAvatar} src={post.avatar} alt="" width={58} height={58} />
                   <div className={styles.postBody}>
                     <div className={styles.authorRow}>
@@ -164,28 +205,29 @@ export default function SanctuaryPage() {
                     <h2>{post.title}</h2>
                     <p>{post.excerpt}</p>
                     <div className={styles.engagementRow} aria-label="Post engagement">
-                      <span>
+                      <button aria-pressed={engagement[post.id].liked} onClick={() => updateEngagement(post.id, "like")} type="button">
                         <EngagementIcon kind="heart" />
-                        {post.likes}
-                      </span>
+                        {engagement[post.id].likes}
+                      </button>
                       <i aria-hidden="true" />
-                      <span>
+                      <button onClick={() => updateEngagement(post.id, "comment")} type="button" aria-label={`Add a comment to ${post.title}`}>
                         <EngagementIcon kind="comment" />
-                        {post.comments}
-                      </span>
+                        {engagement[post.id].comments}
+                      </button>
                       <i aria-hidden="true" />
-                      <span>
+                      <button aria-pressed={engagement[post.id].saved} onClick={() => updateEngagement(post.id, "bookmark")} type="button">
                         <EngagementIcon kind="bookmark" />
-                        {post.bookmarks}
-                      </span>
+                        {engagement[post.id].bookmarks}
+                      </button>
                     </div>
                   </div>
                   <div className={styles.postImage}>
                     <Image src={post.image} alt="" fill sizes="(max-width: 720px) 100vw, 250px" />
                   </div>
-                  <MoreButton />
+                  <MoreButton open={openMenu === post.id} onCopy={() => copyPostLink(post.id)} onToggle={() => setOpenMenu((current) => current === post.id ? null : post.id)} />
                 </article>
               ))}
+              {!visiblePosts.length && <p className={styles.emptyPosts}>No discussions are available in this category yet.</p>}
             </div>
           </section>
 

@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { aboutSanctuary, activeSisters, trendingTopics } from "../data";
@@ -56,9 +58,9 @@ export default function SanctuarySidebar({ compact = false }: SanctuarySidebarPr
             </li>
           ))}
         </ul>
-        <Link className={styles.textLink} href="/portal/sanctuary?view=trending">
+        <button className={styles.textLink} onClick={() => window.dispatchEvent(new CustomEvent("sanctuary:trending"))} type="button">
           View All
-        </Link>
+        </button>
       </section>
 
       {!compact && (

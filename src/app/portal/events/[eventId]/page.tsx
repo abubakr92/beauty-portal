@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { eventDetails } from "../data";
+import EventActions from "./EventActions";
 import styles from "./page.module.css";
 
 type EventDetailsPageProps = {
@@ -68,8 +69,7 @@ export default async function EventDetailsPage({ params }: EventDetailsPageProps
           <section className={styles.registrationCard}>
             <h2>{event.registrationLabel}</h2>
             <p>{event.availability}</p>
-            <button type="button">Register Now</button>
-            <div><button type="button">+ Calendar</button><button type="button">Share</button></div>
+            <EventActions eventId={event.id} title={event.title} date={event.heroDate} location={event.heroLocation} />
           </section>
 
           <section className={styles.priceCard}><h2>Price</h2><span>{event.displayPrice}</span></section>

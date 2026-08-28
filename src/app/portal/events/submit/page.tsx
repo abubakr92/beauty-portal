@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import EventSubmissionForm, { EventSubmissionActions } from "./EventSubmissionForm";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export default function PromoteWorkshopPage() {
       <section className={styles.formShell}>
         <div className={styles.notice}><span aria-hidden="true">i</span><p>Attendees will register and pay through your own external link. We only promote your events on our platform.</p></div>
 
-        <form className={styles.formGrid}>
+        <EventSubmissionForm className={styles.formGrid}>
           <section className={styles.detailsCard}>
             <header><h2>Workshop / Event Details</h2><p>Please provide accurate information so we can properly promote you to the right audience.</p></header>
 
@@ -86,12 +87,10 @@ export default function PromoteWorkshopPage() {
                 <Image src="/join-community/payment-stripe.png" alt="Stripe" width={37} height={18} />
                 <Image src="/join-community/payment-paypal.png" alt="PayPal" width={32} height={15} />
               </div>
-              <button type="button">Pay $15 &amp; Submit</button>
-              <button className={styles.secondaryButton} type="button"><Image src="/join-community/icon-preview-listing.svg" alt="" width={15} height={15} /> Preview Listing</button>
-              <button className={styles.secondaryButton} type="button"><Image src="/shared/icon-save-draft.svg" alt="" width={15} height={15} /> Save Draft</button>
+              <EventSubmissionActions />
             </section>
           </aside>
-        </form>
+        </EventSubmissionForm>
       </section>
     </main>
   );

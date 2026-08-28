@@ -179,6 +179,8 @@
   cursor: pointer;
 }
 
+.socialLabel button:disabled { cursor: default; opacity: .6; }
+
 .chipFieldset,
 .faithFieldset {
   margin: 1px 0 0;

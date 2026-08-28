@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import PhoneNumberField from "./_components/PhoneNumberField";
+import CommunityForm from "./_components/CommunityForm";
+import SocialFields from "./_components/SocialFields";
 import { communityBenefits, communityValues, membershipPlans } from "./data";
 import styles from "./page.module.css";
 
@@ -55,7 +56,7 @@ export default function JoinCommunityPage() {
         <blockquote><strong>“</strong> And whoever relies<br />upon Allah — then He<br />is sufficient for him.”<cite>Quran 65:3</cite></blockquote>
       </section>
 
-      <form className={styles.communityForm}>
+      <CommunityForm className={styles.communityForm}>
         <p className={styles.formIntro}>Set up your profile and join our community</p>
 
         <ol className={styles.steps}>
@@ -85,7 +86,7 @@ export default function JoinCommunityPage() {
             <Field label="City / State, Area" name="city" placeholder="Enter your email address" />
             <label className={styles.field}><span>Business Description</span><textarea name="description" placeholder="Tell us about your business..." /></label>
             <Field label="Website" name="website" type="url" optional placeholder="https://yourwebsite.com" icon="/join-community/icon-globe.svg" />
-            <div className={styles.socialField}><a href="#socials">Add more socials</a><Field label="Instagram Handle" name="instagram" optional placeholder="@yourusername" icon="/join-community/icon-instagram.svg" /></div>
+            <SocialFields />
           </section>
         </div>
 
@@ -110,7 +111,7 @@ export default function JoinCommunityPage() {
           <span className={styles.toggle}><input type="checkbox" name="annual" /><i /><em>Annual Plan</em></span>
         </label>
 
-        <Link className={styles.continueButton} href="/dashboard">Continue →</Link>
+        <button className={styles.continueButton} type="submit">Continue →</button>
         <p className={styles.reviewNote}>🔒 You can review and edit your information before completing.</p>
 
         <section className={styles.values} aria-label="Community values">
@@ -118,7 +119,7 @@ export default function JoinCommunityPage() {
             <article key={title}><Image src={icon} alt="" width={50} height={50} /><div><h2>{title}</h2><p>{description}</p></div></article>
           ))}
         </section>
-      </form>
+      </CommunityForm>
     </main>
   );
 }

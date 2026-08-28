@@ -343,7 +343,8 @@
   gap: 11px;
 }
 
-.businessActions a {
+.businessActions a,
+.businessActions button {
   height: 44px;
   display: flex;
   align-items: center;
@@ -353,12 +354,29 @@
   color: #7b5825;
   font-family: var(--font-display), serif;
   font-size: 16px;
+  cursor: pointer;
 }
 
-.businessActions a:last-child {
+.businessActions a:last-child,
+.businessActions button {
   border-color: #0d4a3a;
   background: #0d4939;
   color: #d9bd88;
+}
+
+.emptyResults {
+  margin: 24px 0 0;
+  padding: 28px;
+  border: 1px dashed #d6c4a7;
+  border-radius: 14px;
+  color: #756853;
+  text-align: center;
+}
+
+.cityGrid button[aria-pressed="true"] {
+  border-color: #0b4738;
+  background: #0a4737;
+  color: #f2dfbc;
 }
 
 .loadMore {

@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import type { EventSearchFilters } from "./EventsSearchPanel";
 import { categoryCounts, eventCategories, events } from "../data";
 import styles from "../page.module.css";
 
@@ -49,8 +50,23 @@ export default function EventsBrowser() {
   const [activeCategory, setActiveCategory] = useState("All Events");
   const [calendarMonth, setCalendarMonth] = useState(() => new Date(2025, 4, 1));
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
+  const [searchFilters, setSearchFilters] = useState<EventSearchFilters>({ query: "", location: "all", date: "all" });
 
-  const visibleEvents = events.filter((event) => matchesCategory(event.category, activeCategory));
+  useEffect(() => {
+    function receiveFilters(event: Event) {
+      setSearchFilters((event as CustomEvent<EventSearchFilters>).detail);
+    }
+    window.addEventListener("events:filter", receiveFilters);
+    return () => window.removeEventListener("events:filter", receiveFilters);
+  }, []);
+
+  const visibleEvents = events.filter((event) => {
+    const normalizedQuery = searchFilters.query.trim().toLowerCase();
+    return matchesCategory(event.category, activeCategory)
+      && (!normalizedQuery || `${event.title} ${event.description} ${event.category}`.toLowerCase().includes(normalizedQuery))
+      && (searchFilters.location === "all" || event.location.includes(searchFilters.location))
+      && (searchFilters.date === "all" || event.day === searchFilters.date);
+  });
   const calendarWeeks = useMemo(() => getCalendarWeeks(calendarMonth), [calendarMonth]);
   const calendarKey = `${calendarMonth.getFullYear()}-${calendarMonth.getMonth()}`;
   const eventDays = highlightedCalendarDays[calendarKey] ?? new Set<number>();

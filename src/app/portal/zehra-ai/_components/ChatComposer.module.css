@@ -7,6 +7,17 @@
   gap: 16px;
 }
 
+.fileInput { display: none; }
+
+.microphone[aria-pressed="true"] {
+  color: #c2863f;
+  animation: listeningPulse 850ms ease-in-out infinite alternate;
+}
+
+@keyframes listeningPulse {
+  to { transform: scale(1.12); opacity: .72; }
+}
+
 .attachment {
   width: 60px;
   height: 60px;
