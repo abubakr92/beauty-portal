@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ResourcesHero from "../_components/ResourcesHero";
+import ArchiveSubmissionForm from "./ArchiveSubmissionForm";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -46,7 +47,7 @@ export default function SubmitArchivePage() {
           <div><strong>Files remain on your own Google Drive or Dropbox.</strong><span>Submit secure links so your archive can be listed in one place.</span></div>
         </div>
 
-        <form className={styles.formGrid}>
+        <ArchiveSubmissionForm className={styles.formGrid}>
           <div className={styles.mainForm}>
             <div className={styles.twoColumns}>
               <label>Contributor Name<input name="contributorName" placeholder="Your full name" /></label>
@@ -102,11 +103,11 @@ export default function SubmitArchivePage() {
                 <input type="checkbox" name="consent" />
                 <span>I confirm that I have the right to share this content and grant <strong>Nothing But Beauty Portal</strong> permission to list and display this in the archive with the provided link.</span>
               </label>
-              <button type="button">Submit Archive</button>
+              <button type="submit">Submit Archive</button>
               <button className={styles.draftButton} type="button"><Image src="/shared/icon-save-draft.svg" alt="" width={15} height={15} />Save Draft</button>
             </section>
           </aside>
-        </form>
+        </ArchiveSubmissionForm>
       </section>
     </main>
   );
