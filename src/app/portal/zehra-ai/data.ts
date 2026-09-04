@@ -1,9 +1,8 @@
 export const zehraTopics = [
-  { label: "Islamic Guidance", icon: "/zehra-ai/topic-guidance.svg" },
-  { label: "Dua & Supplications", icon: "/zehra-ai/topic-dua.svg" },
-  { label: "Quran & Tafsir", icon: "/zehra-ai/topic-quran.svg" },
-  { label: "Women's Wellbeing", icon: "/zehra-ai/topic-wellbeing.svg" },
-  { label: "Events & Programs", icon: "/zehra-ai/topic-events.svg" },
+  { label: "Islamic Guidance", icon: "/zehra-ai/topic-guidance.svg", prompt: "I would like some Islamic guidance." },
+  { label: "Dua & Supplications", icon: "/zehra-ai/topic-dua.svg", prompt: "Can you help me find a dua for what I am going through?" },
+  { label: "Quran & Tafsir", icon: "/zehra-ai/topic-quran.svg", prompt: "Help me understand a passage from the Qur'an." },
+  { label: "Women's Wellbeing", icon: "/zehra-ai/topic-wellbeing.svg", prompt: "I would like faith-centered support for my wellbeing." },
 ] as const;
 
 export const suggestedQuestions = [

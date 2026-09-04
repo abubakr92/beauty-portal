@@ -33,7 +33,7 @@ export type PinnedPost = {
 
 export const sanctuaryCategories: SanctuaryCategory[] = [
   { slug: "all", label: "All Discussions", icon: "/shared/icon-category-grid.svg" },
-  { slug: "faith-wellness", label: "Faith & Wellness", icon: "/sanctuary/category-faith.svg" },
+  { slug: "faith-reflections", label: "Faith & Reflections", icon: "/sanctuary/category-faith.svg" },
   { slug: "personal-growth", label: "Personal Growth", icon: "/sanctuary/category-growth.svg" },
   { slug: "marriage-family", label: "Marriage & Family", icon: "/sanctuary/category-family.svg" },
   { slug: "motherhood", label: "Motherhood", icon: "/sanctuary/category-motherhood.svg" },
@@ -72,7 +72,7 @@ export const sanctuaryPosts: SanctuaryPost[] = [
     age: "4 hours ago",
     daysAgo: 0,
     category: "Faith & Reflections",
-    categorySlug: "faith-wellness",
+    categorySlug: "faith-reflections",
     title: "How do I strengthen my connection with Allah during busy days?",
     excerpt:
       "Some days feel so full of responsibilities that I struggle to find time for myself and my Deen. What are some ways you all stay connected?",
@@ -87,7 +87,7 @@ export const sanctuaryPosts: SanctuaryPost[] = [
     avatar: "/sanctuary/avatar-sister-hana.png",
     age: "3 days ago",
     daysAgo: 3,
-    category: "Faith & Reflections",
+    category: "Personal Growth",
     categorySlug: "personal-growth",
     title: "Books that changed your perspective",
     excerpt:
@@ -115,23 +115,19 @@ export const sanctuaryPosts: SanctuaryPost[] = [
 ];
 
 export const aboutSanctuary = [
-  { label: "Privacy first", icon: "/sanctuary/privacy.svg" },
-  { label: "Kindness always", icon: "kindness" },
-  { label: "Diversity welcome", icon: "/sanctuary/diversity.svg" },
+  { label: "Respectful discussions", icon: "/sanctuary/privacy.svg" },
+  { label: "Anonymous posting available", icon: "kindness" },
+  { label: "Community moderated", icon: "/sanctuary/diversity.svg" },
 ];
 
 export const trendingTopics = [
-  { label: "Managing stress & anxiety", count: 102 },
-  { label: "Marriage advice", count: 86 },
-  { label: "Qur'an reflection", count: 72 },
-  { label: "Productive routines", count: 41 },
+  { label: "Faith & Spirituality", count: 102 },
+  { label: "Marriage", count: 86 },
+  { label: "Motherhood", count: 72 },
+  { label: "Career & Business", count: 51 },
+  { label: "Personal Growth", count: 41 },
 ];
 
-export const activeSisters = [
-  { name: "Sister Noor", avatar: "/sanctuary/avatar-sister-noor.png" },
-  { name: "Sister Hana", avatar: "/sanctuary/avatar-sister-hana.png" },
-  { name: "Sister Amina", avatar: "/shared/avatar-sister-amina.png" },
-  { name: "Sanctuary Admin", avatar: "/sanctuary/avatar-admin-welcome.png" },
-];
+export const popularDiscussions = sanctuaryPosts.slice(0, 3);
 
 export const postTags = ["Faith", "Salah", "Motherhood", "Wellness", "Marriage"];

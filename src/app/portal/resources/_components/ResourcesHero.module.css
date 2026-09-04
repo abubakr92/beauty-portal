@@ -43,6 +43,9 @@
   }
 
   .hero h1 {
-    font-size: clamp(42px, 12vw, 54px);
+    font-size: clamp(38px, 11vw, 50px);
+    overflow-wrap: anywhere;
   }
+
+  .hero > span { overflow-wrap: anywhere; }
 }

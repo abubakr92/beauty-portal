@@ -85,6 +85,7 @@
   height: 1px;
   background: #d5ae72;
 }
+.divider img { width: 25px; height: 18px; }
 
 .outlineButton {
   display: flex;
@@ -143,6 +144,11 @@
   font-weight: 600;
   text-align: right;
 }
+
+.popularList { margin: 20px 0 0; padding: 0; display: grid; list-style: none; }
+.popularList li { padding: 12px 0; display: grid; gap: 4px; border-top: 1px solid rgba(179, 138, 83, .2); }
+.popularList a { color: #4d3b20; font: 600 15px/1.25 var(--font-display), Georgia, serif; }
+.popularList span { color: #8a8176; font-size: 11px; }
 
 .avatarRow {
   display: flex;

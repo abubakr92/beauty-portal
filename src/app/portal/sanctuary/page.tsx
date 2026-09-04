@@ -52,6 +52,8 @@ export default function SanctuaryPage() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [sort, setSort] = useState("latest");
   const [period, setPeriod] = useState("all-time");
+  const [query, setQuery] = useState("");
+  const [showAll, setShowAll] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [engagement, setEngagement] = useState(() => Object.fromEntries(sanctuaryPosts.map((post) => [post.id, { likes: post.likes, comments: post.comments, bookmarks: post.bookmarks, liked: false, saved: false }])));
 
@@ -68,11 +70,12 @@ export default function SanctuaryPage() {
   const visiblePosts = useMemo(() => {
     const categoryPosts = activeCategory === "all" ? sanctuaryPosts : sanctuaryPosts.filter((post) => post.categorySlug === activeCategory);
     const periodLimit = period === "today" ? 0 : period === "week" ? 7 : period === "month" ? 30 : Number.POSITIVE_INFINITY;
-    const filtered = categoryPosts.filter((post) => post.daysAgo <= periodLimit);
+    const normalizedQuery = query.trim().toLowerCase();
+    const filtered = categoryPosts.filter((post) => post.daysAgo <= periodLimit && (!normalizedQuery || `${post.title} ${post.excerpt} ${post.category}`.toLowerCase().includes(normalizedQuery)));
     if (sort === "popular") return [...filtered].sort((first, second) => engagement[second.id].likes - engagement[first.id].likes);
     if (sort === "discussed") return [...filtered].sort((first, second) => engagement[second.id].comments - engagement[first.id].comments);
     return filtered;
-  }, [activeCategory, engagement, period, sort]);
+  }, [activeCategory, engagement, period, query, sort]);
 
   function updateEngagement(postId: string, kind: "like" | "comment" | "bookmark") {
     setEngagement((current) => {
@@ -84,7 +87,7 @@ export default function SanctuaryPage() {
   }
 
   function copyPostLink(postId: string) {
-    void navigator.clipboard?.writeText(`${window.location.origin}/portal/sanctuary#${postId}`);
+    void navigator.clipboard?.writeText(`${window.location.origin}/portal/sanctuary/${postId}`);
     setOpenMenu(null);
   }
 
@@ -102,14 +105,17 @@ export default function SanctuaryPage() {
 
         <header className={styles.intro}>
           <div>
+            <span className={styles.eyebrow}>REFLECT. CONNECT. BELONG.</span>
             <h1>Sanctuary</h1>
-            <p>A safe space to connect, share, learn, and grow together in faith and sisterhood.</p>
+            <p>Where sisterhood finds a voice — a private space for honest conversations, shared experiences, thoughtful support, and meaningful connection.</p>
           </div>
           <Link className={styles.createButton} href="/portal/sanctuary/new-post">
             <span aria-hidden="true">＋</span>
-            Create Post
+            Start a Discussion
           </Link>
         </header>
+
+        <label className={styles.searchBox}><span>Search Sanctuary</span><div><span aria-hidden="true">⌕</span><input onChange={(event) => setQuery(event.target.value)} placeholder="Search discussions, topics, or keywords..." type="search" value={query} /></div></label>
 
         <div className={styles.contentGrid}>
           <section className={styles.feedColumn} aria-label="Sanctuary discussions">
@@ -131,7 +137,7 @@ export default function SanctuaryPage() {
             <section className={styles.pinnedSection} aria-labelledby="pinned-heading">
               <h2 id="pinned-heading">
                 <Image src="/sanctuary/pinned.svg" alt="" width={18} height={18} />
-                Pinned by Admin
+                Pinned Discussions
               </h2>
               <div className={styles.pinnedList}>
                 {pinnedPosts.map((post) => (
@@ -159,24 +165,15 @@ export default function SanctuaryPage() {
               </div>
             </section>
 
+            <div className={styles.feedHeading}><span>COMMUNITY CONVERSATIONS</span><h2>Latest Discussions</h2></div>
+
             <form className={styles.filters} aria-label="Filter discussions">
               <label>
                 <span className={styles.srOnly}>Sort discussions</span>
                 <select name="sort" onChange={(event) => setSort(event.target.value)} value={sort}>
-                  <option value="latest">Latest</option>
-                  <option value="popular">Most Popular</option>
+                  <option value="latest">Newest</option>
+                  <option value="popular">Best</option>
                   <option value="discussed">Most Discussed</option>
-                </select>
-              </label>
-              <label>
-                <span className={styles.srOnly}>Filter by category</span>
-                <select name="category" onChange={(event) => setActiveCategory(event.target.value)} value={activeCategory}>
-                  <option value="all">All Categories</option>
-                  {sanctuaryCategories.slice(1).map((category) => (
-                    <option key={category.slug} value={category.slug}>
-                      {category.label}
-                    </option>
-                  ))}
                 </select>
               </label>
               <label>
@@ -191,7 +188,7 @@ export default function SanctuaryPage() {
             </form>
 
             <div className={styles.postList}>
-              {visiblePosts.map((post) => (
+              {(showAll ? visiblePosts : visiblePosts.slice(0, 2)).map((post) => (
                 <article className={styles.discussionCard} id={post.id} key={post.id} data-period={period}>
                   <Image className={styles.postAvatar} src={post.avatar} alt="" width={58} height={58} />
                   <div className={styles.postBody}>
@@ -202,7 +199,7 @@ export default function SanctuaryPage() {
                       <i aria-hidden="true" />
                       <span>in {post.category}</span>
                     </div>
-                    <h2>{post.title}</h2>
+                    <h2><Link href={`/portal/sanctuary/${post.id}`}>{post.title}</Link></h2>
                     <p>{post.excerpt}</p>
                     <div className={styles.engagementRow} aria-label="Post engagement">
                       <button aria-pressed={engagement[post.id].liked} onClick={() => updateEngagement(post.id, "like")} type="button">
@@ -229,6 +226,7 @@ export default function SanctuaryPage() {
               ))}
               {!visiblePosts.length && <p className={styles.emptyPosts}>No discussions are available in this category yet.</p>}
             </div>
+            {visiblePosts.length > 2 && <button className={styles.loadMore} onClick={() => setShowAll((current) => !current)} type="button">{showAll ? "Show Fewer Discussions" : "Load More Discussions"}</button>}
           </section>
 
           <SanctuarySidebar />

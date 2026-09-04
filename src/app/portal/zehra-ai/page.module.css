@@ -46,17 +46,22 @@
   margin-top: 30px;
   padding: 15px 23px 12px;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   align-items: start;
   border: 1px solid rgba(94, 74, 43, 0.1);
   border-radius: 12px;
   background: rgba(255, 251, 246, 0.6);
 }
 
-.topics article {
+.topics a {
   min-width: 0;
+  padding: 5px;
+  border-radius: 10px;
+  color: inherit;
   text-align: center;
+  transition: background-color .18s ease, transform .18s ease;
 }
+.topics a:hover { transform: translateY(-2px); background: rgba(221, 195, 151, .2); }
 
 .topics img {
   width: 58px;
@@ -193,10 +198,6 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px 10px;
     padding-block: 18px;
-  }
-
-  .topics article:last-child {
-    grid-column: 1 / -1;
   }
 
   .askBanner {

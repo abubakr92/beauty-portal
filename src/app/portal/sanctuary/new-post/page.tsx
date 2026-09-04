@@ -7,7 +7,7 @@ import PublishPostForm from "./PublishPostForm";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "New Sanctuary Post | Nothing But Beauty",
+  title: "Start a Discussion | Nothing But Beauty",
   description: "Share a question, reflection, or experience with the Nothing But Beauty sisterhood.",
 };
 
@@ -25,8 +25,8 @@ export default function NewSanctuaryPostPage() {
         />
 
         <header className={styles.intro}>
-          <h1>New Post</h1>
-          <p>Share with the sisterhood</p>
+          <h1>Start a Discussion</h1>
+          <p>Ask a question, share an experience, or begin a thoughtful conversation with the sisterhood.</p>
         </header>
 
         <div className={styles.contentGrid}>
@@ -46,15 +46,15 @@ export default function NewSanctuaryPostPage() {
             </label>
 
             <label className={styles.field}>
-              <span>Title</span>
-              <input name="title" type="text" placeholder="What would you like to discuss?" maxLength={160} required />
+              <span>Discussion Title</span>
+              <input name="title" type="text" placeholder="What would you like to ask or talk about?" maxLength={160} required />
             </label>
 
             <label className={styles.field}>
-              <span>Body</span>
+              <span>Share More</span>
               <textarea
                 name="body"
-                placeholder="Share your thoughts, questions, or experiences..."
+                placeholder="Share your question, experience, reflection, or context here..."
                 rows={5}
                 maxLength={4000}
                 required
@@ -62,7 +62,7 @@ export default function NewSanctuaryPostPage() {
             </label>
 
             <fieldset className={styles.tags}>
-              <legend>Tags</legend>
+              <legend>Tags <small>(Optional)</small></legend>
               <div>
                 {postTags.map((tag) => (
                   <label key={tag}>
@@ -78,12 +78,12 @@ export default function NewSanctuaryPostPage() {
             <aside className={styles.reminder} aria-label="Community guidelines reminder">
               <strong>
                 <span aria-hidden="true">▲</span>
-                Community Guidelines Reminder
+                Before You Post
               </strong>
-              <p>No hate speech, harassment, explicit content, misinformation, or requests for religious rulings.</p>
+              <p>Keep discussions respectful, protect personal information, and avoid hate speech, harassment, misinformation, or requests for religious rulings. <a href="#community-guidelines">View Full Guidelines</a></p>
             </aside>
 
-            <button className={styles.publishButton} type="submit">Publish Your Post</button>
+            <button className={styles.publishButton} type="submit">Post Discussion</button>
           </PublishPostForm>
 
           <SanctuarySidebar compact />

@@ -67,7 +67,7 @@ export default function SubmitArchivePage() {
             </fieldset>
 
             <div className={styles.twoColumns}>
-              <label>Topic / Category<select name="topic" defaultValue=""><option value="" disabled>Select or search topic</option><option>Quran</option><option>Fiqh</option><option>Wellbeing</option></select></label>
+              <label>Theme / Category<select name="topic" defaultValue=""><option value="" disabled>Select or search theme</option><option>Quran</option><option>Fiqh</option><option>Wellbeing</option></select></label>
               <label>Series / Event Name (optional)<select name="series" defaultValue=""><option value="" disabled>E.g., Ramadan Series 2024</option><option>Ramadan Series 2024</option></select></label>
             </div>
 

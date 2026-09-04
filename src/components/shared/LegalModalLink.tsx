@@ -20,6 +20,14 @@ const documents = {
       ["Community standards", "Content that is misleading, harmful, discriminatory, or inconsistent with community guidelines may be reviewed or removed."],
     ],
   },
+  businessMembership: {
+    title: "Business Membership Terms and Conditions",
+    sections: [
+      ["Membership and renewal", "Business memberships renew on the billing cycle selected at checkout unless cancelled in accordance with the final membership terms."],
+      ["Listings and eligibility", "Listings are subject to review. Promotional opportunities, campaigns, spotlights, and events may have separate eligibility requirements and are not guaranteed unless expressly stated."],
+      ["Prototype notice", "This is temporary prototype copy. The client-approved Business Membership Terms and Conditions must replace it before payments are enabled."],
+    ],
+  },
 } as const;
 
 type LegalModalLinkProps = {

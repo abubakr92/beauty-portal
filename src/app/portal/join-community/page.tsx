@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import MembershipWizard from "./_components/MembershipWizard";
 import { communityBenefits } from "./data";
 import styles from "./page.module.css";
@@ -16,7 +17,9 @@ export default function JoinCommunityPage() {
         <div className={styles.heroIntro}>
           <p>For Business Owners</p>
           <h1>Be Discovered.<br />Build Trust. Grow.</h1>
-          <span>Create a trusted presence for your business, connect with women looking for values-aligned products and services, and unlock meaningful opportunities to grow.</span>
+          <span>Showcase your business to a growing community of Muslim women looking for trusted products, services, and professionals.</span>
+          <Link className={styles.heroButton} href="#membership-plans">View Memberships</Link>
+          <small>Plans starting at $15/month</small>
         </div>
 
         <div className={styles.benefits}>
@@ -27,6 +30,11 @@ export default function JoinCommunityPage() {
             </article>
           ))}
         </div>
+
+        <blockquote className={styles.verse}>
+          <p>“And whoever relies upon Allah — then He is sufficient for him.”</p>
+          <cite>Qur&apos;an 65:3</cite>
+        </blockquote>
       </section>
 
       <MembershipWizard />

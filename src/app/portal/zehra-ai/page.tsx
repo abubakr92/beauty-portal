@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import ChatComposer from "./_components/ChatComposer";
 import ZehraHeading from "./_components/ZehraHeading";
 import { suggestedQuestions, zehraTopics } from "./data";
@@ -7,7 +8,7 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Zehra AI | Nothing But Beauty",
-  description: "A faith-rooted AI companion for guidance, duas, wellbeing, events, and spiritual growth.",
+  description: "A faith-rooted AI companion for guidance, duas, wellbeing, and spiritual growth.",
 };
 
 export default function ZehraAiPage() {
@@ -31,10 +32,10 @@ export default function ZehraAiPage() {
 
         <section className={styles.topics} aria-label="Ways Zehra can help">
           {zehraTopics.map((topic) => (
-            <article key={topic.label}>
+            <Link href={`/portal/zehra-ai/chat?message=${encodeURIComponent(topic.prompt)}`} key={topic.label}>
               <Image src={topic.icon} alt="" width={58} height={58} />
               <h3>{topic.label}</h3>
-            </article>
+            </Link>
           ))}
         </section>
 

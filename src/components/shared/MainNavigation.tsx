@@ -10,6 +10,7 @@ type NavigationItem = {
   label: string;
   href: string;
   membershipHref?: string;
+  activeMemberLabel?: string;
 };
 
 const navigation: NavigationItem[] = [
@@ -19,8 +20,8 @@ const navigation: NavigationItem[] = [
   { label: "Zehra AI", href: "/portal/zehra-ai" },
   { label: "Events", href: "/portal/events" },
   { label: "Resources", href: "/portal/resources" },
-  { label: "Business Dashboard", href: "/dashboard", membershipHref: "/portal/join-community" },
-  { label: "About Us", href: "/portal/home#about" },
+  { label: "For Businesses", activeMemberLabel: "Business Dashboard", href: "/dashboard", membershipHref: "/portal/join-community" },
+  { label: "About Us", href: "/portal/about" },
 ];
 
 type MainNavigationProps = {
@@ -61,7 +62,8 @@ export default function MainNavigation({ ariaLabel, className, showAccountLinks 
     <nav className={className} aria-label={ariaLabel}>
       {navigation.map((item) => {
         const href = item.membershipHref && !paidMember ? item.membershipHref : item.href;
-        return <Link key={item.label} href={href} aria-current={isCurrentPage(item.href) ? "page" : undefined}>{item.label}</Link>;
+        const label = item.activeMemberLabel && paidMember ? item.activeMemberLabel : item.label;
+        return <Link key={item.href} href={href} aria-current={isCurrentPage(href) ? "page" : undefined}>{label}</Link>;
       })}
       {showAccountLinks && (
         <LogoutLink />

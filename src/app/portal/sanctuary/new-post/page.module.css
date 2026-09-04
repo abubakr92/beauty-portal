@@ -80,6 +80,8 @@
   font-weight: 600;
 }
 
+.tags legend small { color: #8b8379; font: 400 12px var(--font-body), Arial, sans-serif; }
+
 .field input,
 .field select,
 .field textarea {
@@ -183,6 +185,15 @@
   border-radius: 17px;
   background: rgba(255, 248, 237, 0.36);
 }
+
+.identityCard > legend { padding: 0 7px; color: #2b1e09; font: 600 18px var(--font-display), Georgia, serif; }
+.identityChoices { margin: 5px 0 14px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.identityChoices label { position: relative; cursor: pointer; }
+.identityChoices input { position: absolute; opacity: 0; }
+.identityChoices label > span { min-height: 76px; padding: 13px 15px; display: grid; align-content: center; gap: 3px; border: 1px solid #d8c9b4; border-radius: 10px; background: rgba(255,255,255,.4); color: #5b554d; }
+.identityChoices strong { color: #3d2c09; font: 600 15px var(--font-display), Georgia, serif; }
+.identityChoices small { font-size: 11px; }
+.identityChoices input:checked + span { border-color: #0b4336; background: #e8eee8; box-shadow: 0 0 0 2px rgba(11,67,54,.08); }
 
 .identityHeader {
   display: grid;
@@ -302,6 +313,7 @@
   margin: 8px 0 0;
   font-size: 13px;
 }
+.reminder a { color: #7c3c13; font-weight: 800; text-decoration: underline; }
 
 .publishButton {
   width: min(100%, 360px);
@@ -376,6 +388,8 @@
   .identityHeader {
     grid-template-columns: auto minmax(0, 1fr);
   }
+
+  .identityChoices { grid-template-columns: 1fr; }
 
   .identityHeader button {
     grid-column: 2;

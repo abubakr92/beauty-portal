@@ -47,11 +47,19 @@
   line-height: 1;
 }
 
+.eyebrow { margin-bottom: 8px; display: block; color: #a47537; font-size: 11px; font-weight: 800; letter-spacing: .14em; }
+
 .intro p {
+  max-width: 800px;
   margin: 9px 0 0;
   color: #74706b;
   font-size: 15px;
 }
+
+.searchBox { position: relative; z-index: 2; margin: 0 0 18px; display: grid; gap: 7px; color: #3d2c09; font: 600 14px var(--font-display), Georgia, serif; }
+.searchBox > div { min-height: 54px; display: flex; align-items: center; gap: 10px; padding: 0 16px; border: 1px solid rgba(179,138,83,.35); border-radius: 10px; background: rgba(255,250,243,.72); }
+.searchBox > div > span { color: #a47638; font-size: 26px; }
+.searchBox input { width: 100%; height: 50px; border: 0; outline: 0; background: transparent; color: #3d2c09; font: 14px var(--font-body), Arial, sans-serif; }
 
 .createButton {
   display: inline-flex;
@@ -161,6 +169,7 @@
   font-size: 16px;
   font-weight: 500;
 }
+.pinnedSection > h2 img { width: 18px; height: 18px; }
 
 .pinnedList {
   padding: 0 20px;
@@ -314,6 +323,10 @@
   margin: 20px 0 14px;
 }
 
+.feedHeading { margin: 24px 0 0; }
+.feedHeading span { color: #a47537; font-size: 10px; font-weight: 800; letter-spacing: .13em; }
+.feedHeading h2 { margin: 4px 0 0; color: #241805; font: 600 29px var(--font-display), Georgia, serif; }
+
 .filters select {
   min-height: 42px;
   padding: 0 34px 0 13px;
@@ -423,6 +436,8 @@
   text-align: center;
 }
 
+.loadMore { min-width: 230px; min-height: 48px; margin: 22px auto 0; padding: 0 24px; display: block; border: 1px solid #b88b4b; border-radius: 999px; background: transparent; color: #765526; cursor: pointer; font: 600 16px var(--font-display), Georgia, serif; }
+
 .engagementRow i {
   height: 21px;
 }
@@ -495,6 +510,7 @@
 
   .intro {
     align-items: flex-start;
+    flex-direction: column;
   }
 
   .intro > div {
@@ -510,10 +526,10 @@
   }
 
   .createButton {
-    min-width: 52px;
+    min-width: 190px;
     min-height: 52px;
     padding-inline: 15px;
-    font-size: 0;
+    font-size: 16px;
   }
 
   .createButton span {

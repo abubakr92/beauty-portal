@@ -23,10 +23,10 @@ export default function MainFooter() {
 
         <div>
           <h2>Company</h2>
-          <Link href="/portal/home#about">About Us</Link>
-          <Link href="/portal/home#about">Our Mission</Link>
+          <Link href="/portal/about">About Us</Link>
+          <Link href="/portal/about#mission">Our Mission</Link>
           <a href="mailto:hello@nothingbutbeautyportal.com?subject=Careers">Careers</a>
-          <a href="mailto:hello@nothingbutbeautyportal.com">Contact Us</a>
+          <Link href="/portal/about#inquiry">Contact Us</Link>
         </div>
 
         <div>

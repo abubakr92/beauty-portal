@@ -1,0 +1,32 @@
+.page { min-height: calc(100vh - 64px); padding: 22px; background: #073b31; color: #33240d; }
+.shell { width: min(100%, 1050px); margin: auto; padding: clamp(20px, 4vw, 48px); border-radius: 22px; background: #f8eee2; }
+.back { color: #8a632e; font-weight: 700; }
+.routeMessage { min-height: 420px; display: grid; place-items: center; align-content: center; gap: 9px; color: #6c6256; text-align: center; }
+.routeMessage h1 { margin: 0; color: #2e210c; font: 600 40px var(--font-display), Georgia, serif; }
+.routeMessage p { margin: 0; }
+.routeMessage a { margin-top: 12px; color: #8a632e; font-weight: 700; text-decoration: underline; }
+.confirmation { margin: 18px 0; padding: 13px 17px; border: 1px solid #acd0bd; border-radius: 9px; background: #e8f3ec; color: #175540; }
+.discussion { margin-top: 25px; padding: clamp(22px, 4vw, 42px); border: 1px solid #ddcfbc; border-radius: 18px; background: rgba(255,255,255,.42); }
+.author { display: flex; align-items: center; gap: 12px; }
+.author img { border-radius: 50%; object-fit: cover; }
+.author strong { font: 600 17px var(--font-display), Georgia, serif; }
+.author span { margin-left: 8px; padding: 4px 8px; border-radius: 999px; background: #efe0c5; color: #86612e; font-size: 10px; }
+.author p { margin: 3px 0 0; color: #857c72; font-size: 11px; }
+.discussion h1 { margin: 28px 0 12px; color: #241805; font: 600 clamp(31px, 5vw, 50px)/1.08 var(--font-display), Georgia, serif; }
+.body { margin: 0; color: #5e665f; font-size: 15px; line-height: 1.8; white-space: pre-wrap; }
+.tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 7px; }
+.tags span { padding: 6px 11px; border-radius: 999px; background: #ede1ce; color: #775a31; font-size: 11px; }
+.actions { margin-top: 27px; padding-top: 18px; display: flex; gap: 19px; border-top: 1px solid #ded2c1; color: #756c61; font-size: 13px; }
+.actions button { border: 0; background: transparent; color: inherit; cursor: pointer; }
+.actions button[aria-pressed="true"] { color: #9b4b4a; }
+.replies { margin-top: 25px; }
+.replies h2 { font: 600 27px var(--font-display), Georgia, serif; }
+.replies article { margin-top: 10px; padding: 19px 22px; border: 1px solid #dfd1be; border-radius: 13px; background: rgba(255,255,255,.34); }
+.replies article > div { display: flex; justify-content: space-between; gap: 10px; }
+.replies time { color: #8b8278; font-size: 11px; }
+.replies p { margin: 8px 0 0; color: #5d655f; font-size: 13px; line-height: 1.6; }
+.replyForm { margin-top: 25px; display: grid; gap: 9px; }
+.replyForm label { font: 600 22px var(--font-display), Georgia, serif; }
+.replyForm textarea { padding: 15px; border: 1px solid #cabca8; border-radius: 10px; outline: 0; background: #fffaf3; resize: vertical; }
+.replyForm button { width: 170px; min-height: 46px; justify-self: end; border: 0; border-radius: 999px; background: #174b3c; color: #f2d8aa; cursor: pointer; font: 600 15px var(--font-display), Georgia, serif; }
+@media (max-width: 580px) { .page { padding: 10px; } .shell { padding: 18px 13px; border-radius: 15px; } .discussion { padding: 20px 15px; } .actions { flex-wrap: wrap; } }

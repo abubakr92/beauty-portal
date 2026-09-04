@@ -12,7 +12,7 @@ export default function EventsPage() {
   return (
     <main className={styles.page}>
       <section className={styles.hero} aria-labelledby="events-title">
-        <p>FAITH. SISTERHOOD. PURPOSE.</p>
+        <p>GROW. CREATE. SEEK. LEARN. INSPIRE. EMPOWER.</p>
         <h1 id="events-title">Upcoming<br />Events &amp; Workshops</h1>
         <span>Discover meaningful events, workshops, and programs created for Muslim women to learn, grow, and connect.</span>
       </section>
