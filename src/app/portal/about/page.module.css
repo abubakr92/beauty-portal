@@ -25,6 +25,7 @@
 .form textarea { padding-block: 13px; resize: vertical; }
 .form input:focus, .form select:focus, .form textarea:focus { border-color: #9e7137; box-shadow: 0 0 0 3px rgba(158,113,55,.12); }
 .fullField { grid-column: 1 / -1; }
+.formError { grid-column: 1 / -1; margin: 0; padding: 11px 13px; border: 1px solid #c98f85; border-radius: 8px; background: #fff3f0; color: #8b352b; font-size: 13px; line-height: 1.5; }
 .form > button { min-height: 50px; grid-column: 1 / -1; border: 0; border-radius: 8px; background: #174b3c; color: #f7e5c6; cursor: pointer; font: 500 16px var(--font-display), serif; }
 .thankYou { min-height: 350px; padding: 45px; display: grid; place-items: center; align-content: center; border: 1px solid #ddcfbc; border-radius: 18px; background: rgba(255,255,255,.46); text-align: center; }
 .thankYou > span { width: 62px; height: 62px; display: grid; place-items: center; border-radius: 50%; background: #174b3c; color: #f4d395; font-size: 28px; }

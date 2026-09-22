@@ -19,13 +19,13 @@ export default function AboutPage() {
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
-        <div><p>ABOUT NOTHING BUT BEAUTY</p><h1>A Faith-Centered Space for Women to Belong and Grow.</h1><span>Nothing But Beauty Portal brings sisterhood, trusted resources, thoughtful conversations, events, and women-led businesses together in one intentional community.</span></div>
+        <div><p>ABOUT NOTHING BUT BEAUTY</p><h1>About Us</h1><span>Nothing But Beauty Portal is a faith-centered digital platform dedicated to empowering Muslim women to connect, grow, and lead with purpose. Built on the core values of faith, sisterhood, and community, the portal provides a safe and private space where members can engage in meaningful discussions in the Sanctuary, discover women-owned businesses, access curated educational resources, and connect with Zehra AI for faith-rooted guidance. Together, we are building a global movement where women support one another, deepen their faith, and create lasting impact.</span></div>
         <Image src="/home/community-movement.png" alt="Muslim women connecting and learning together" width={1028} height={528} priority />
       </section>
 
       <section className={styles.mission} id="mission">
-        <div><p>OUR MISSION</p><h2>More Than an App — A Movement</h2></div>
-        <p>We&apos;re building a global sisterhood where faith fuels purpose and, together, women can uplift one another, build trusted connections, and create meaningful impact in their communities and beyond.</p>
+        <div><p>OUR MISSION</p><h2>Connect. Learn. Heal. Build. Lead.</h2></div>
+        <p>To create a safe, inspiring, and faith-rooted digital sanctuary where Shia women feel empowered to connect, learn, heal, build, and lead.</p>
       </section>
 
       <section className={styles.values} aria-label="Our values">{values.map(([icon, title, copy]) => <article key={title}><Image src={icon} alt="" width={70} height={70} /><h2>{title}</h2><p>{copy}</p></article>)}</section>

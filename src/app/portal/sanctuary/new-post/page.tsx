@@ -26,7 +26,7 @@ export default function NewSanctuaryPostPage() {
 
         <header className={styles.intro}>
           <h1>Start a Discussion</h1>
-          <p>Ask a question, share an experience, or begin a thoughtful conversation with the sisterhood.</p>
+          <p>Share a question, reflection, experience, or topic with the community.</p>
         </header>
 
         <div className={styles.contentGrid}>
@@ -80,7 +80,7 @@ export default function NewSanctuaryPostPage() {
                 <span aria-hidden="true">▲</span>
                 Before You Post
               </strong>
-              <p>Keep discussions respectful, protect personal information, and avoid hate speech, harassment, misinformation, or requests for religious rulings. <a href="#community-guidelines">View Full Guidelines</a></p>
+              <p>Please keep discussions respectful, protect personal privacy, and follow the Sanctuary Community Guidelines. <a href="#community-guidelines">View Full Guidelines</a></p>
             </aside>
 
             <button className={styles.publishButton} type="submit">Post Discussion</button>

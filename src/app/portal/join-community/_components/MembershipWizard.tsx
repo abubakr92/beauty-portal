@@ -183,7 +183,7 @@ export default function MembershipWizard() {
         {error && <p className={styles.error} role="alert">{error}</p>}<button className={styles.primaryButton} onClick={completeMembership} type="button">Continue to Secure Payment <span>→</span></button><p className={styles.secureNote}>🔒 Prototype payment confirmation — no payment details are collected.</p>
       </div>}
 
-      {step === 5 && <div className={styles.success}><span aria-hidden="true">✓</span><p>Welcome to Nothing But Beauty Portal</p><h2>Welcome to the Business Community</h2><p>Your {selectedPlan.name} membership is active. Complete these details to make your listing ready for customers:</p><ul><li>Add or confirm your logo and business photos</li><li>Refine your business description</li><li>Add your booking, contact, and social links</li><li>Preview your public directory listing</li></ul><div className={styles.successActions}><Link href="/dashboard/profile/edit">Complete My Business Profile <span>→</span></Link><Link href="/dashboard">Go to Business Dashboard</Link></div></div>}
+      {step === 5 && <div className={styles.success}><span aria-hidden="true">✓</span><p>Welcome to Nothing But Beauty Portal</p><h2>Business Community</h2><p>Your {selectedPlan.name} membership is active. Complete these details to make your listing ready for customers:</p><ul><li>Add or confirm your logo and business photos</li><li>Refine your business description</li><li>Add your booking, contact, and social links</li><li>Preview your public directory listing</li></ul><div className={styles.successActions}><Link href="/dashboard/profile/edit">Complete My Business Profile <span>→</span></Link><Link href="/dashboard">Go to Business Dashboard</Link></div></div>}
     </section>
   );
 }
