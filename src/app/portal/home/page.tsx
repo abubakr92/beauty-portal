@@ -70,13 +70,6 @@ export default function HomePage() {
               priority
               sizes="(max-width: 760px) 50vw, 300px"
             />
-            <Image
-              className={styles.heroFloral}
-              src="/sanctuary/sanctuary-floral-corner.png"
-              alt=""
-              width={240}
-              height={240}
-            />
           </div>
 
           <p className={styles.heroQuote}>
